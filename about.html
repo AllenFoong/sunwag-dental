@@ -1,0 +1,312 @@
+<!doctype html>
+<!--
+  Sunwag Dental Surgery — About
+  ⚠ Dr. Phang 的学历 / 执业年资故意留空：01-分析与规格书.md 里这一项是
+     【待诊所给】，编一个数字上去就是虚假宣传。拿到真数据后填入下方标了 TODO 的地方。
+  ⚠ 合规（MDC / PHFSA）：不写 best / cheapest / painless / 无痛 / 最好 / 最便宜，
+     不放评分与评论，不放 before / after，不写价格。只描述做法，不承诺结果。
+  ⚠ 照片位现在是空的，images/ 里还没东西（见 README）。
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-zh="关于诊所 | Sunwag Dental Surgery 康维牙科">
+      About | Sunwag Dental Surgery, Johor Bahru
+    </title>
+    <meta
+      name="description"
+      content="Sunwag Dental Surgery in Taman Ungku Tun Aminah, Johor Bahru. Dr. Phang Fook Chin. We explain what we found and what the options are before anything starts."
+      data-zh-content="Sunwag Dental Surgery 康维牙科，位于 Taman Ungku Tun Aminah。主诊 Dr. Phang Fook Chin。检查后会先说明看到什么、有哪些选择，你同意了才开始。"
+    />
+    <meta property="og:title" content="About | Sunwag Dental Surgery" />
+    <meta
+      property="og:description"
+      content="A small practice in Tun Aminah. Dr. Phang Fook Chin, and how we work."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <div class="wash" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">Sunwag Dental</a>
+
+        <div class="nav-panel" id="nav-panel">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" data-zh="首页">Home</a>
+            </li>
+            <li>
+              <a href="services.html" data-zh="服务">Services</a>
+            </li>
+            <li>
+              <a href="about.html" aria-current="page" data-zh="关于">About</a>
+            </li>
+            <li>
+              <a href="faq.html" data-zh="常见问题">FAQ</a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <div class="lang" role="group" aria-label="Language">
+              <button type="button" data-lang-btn="en" aria-pressed="true">
+                EN
+              </button>
+              <button type="button" data-lang-btn="zh" aria-pressed="false">
+                中文
+              </button>
+            </div>
+            <a
+              class="btn btn-primary"
+              href="contact.html"
+              data-zh="联络我们"
+              >Contact us</a
+            >
+          </div>
+        </div>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+          aria-label="Menu"
+          data-zh-aria-label="菜单"
+        >
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <header class="hero wrap">
+        <div class="hero-card" data-reveal>
+          <span class="eyebrow" data-zh="关于">About</span>
+          <h1 data-zh="在这里给你看牙的人。">
+            The person who looks after you here.
+          </h1>
+          <p
+            class="lede"
+            data-zh="Tun Aminah 的一间小诊所。一位主诊医生，以及一套可以讲清楚的做法。"
+          >
+            A small practice in Tun Aminah. One dentist, and a way of working we
+            can describe plainly.
+          </p>
+        </div>
+      </header>
+
+      <section class="wrap" style="padding-top: 0">
+        <div class="hero-card panel-lg" data-reveal>
+          <span class="eyebrow" data-zh="主诊">The dentist</span>
+          <h2>Dr. Phang Fook Chin</h2>
+          <p
+            class="lede"
+            data-zh="你在这里看牙，看诊的就是他。检查完会先告诉你看到什么、接下来可以怎么做，再动手。"
+          >
+            He is the dentist you see. After the examination he tells you what
+            he found and what can be done about it, before anything starts.
+          </p>
+          <!-- TODO（待诊所提供）：毕业院校、执业年资、MDC 注册号。
+               拿到真实数据前不写任何具体年份或头衔。 -->
+          <!-- TODO：Dr. Phang 的照片（images/ 目前是空的）。
+               不用 stock photo 充数 —— 见 01-分析与规格书.md。 -->
+        </div>
+      </section>
+
+      <section class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="这里的做法">How things work here</h2>
+          <p
+            class="lede"
+            data-zh="下面这三条不是对结果的承诺，只是我们平时怎么做。"
+          >
+            None of this is a promise about the outcome. It is simply how we go
+            about it.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card" data-reveal>
+            <div class="card-num">1</div>
+            <h3 data-zh="先说明，再动手">
+              We explain before we start
+            </h3>
+            <p
+              data-zh="检查完会告诉你看到什么、有哪些选择、各自的差别在哪里，然后由你决定。"
+            >
+              After the examination we lay out what we found, what the options
+              are and how they differ — and you decide.
+            </p>
+          </article>
+
+          <article class="card" data-reveal style="--d: 80ms">
+            <div class="card-num">2</div>
+            <h3 data-zh="同意了才开始">
+              Nothing starts until you agree
+            </h3>
+            <p
+              data-zh="需要做什么、大概多少钱，我们会先说。你同意了再做，不会做到一半才告诉你。"
+            >
+              We tell you what is needed and roughly what it comes to first.
+              Nothing begins until you have agreed to it.
+            </p>
+          </article>
+
+          <article class="card" data-reveal style="--d: 160ms">
+            <div class="card-num">3</div>
+            <h3 data-zh="可以只先做检查">
+              You can stop at the examination
+            </h3>
+            <p
+              data-zh="对看牙紧张是很普遍的事。你可以只先来检查、听完说明，回去想清楚再决定。"
+            >
+              Being nervous about dentists is ordinary. You can come in for the
+              examination alone, hear what we found, and decide afterwards.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap is-tight-below">
+        <div class="split">
+          <div class="hero-card" data-reveal>
+            <h2 data-zh="诊所在哪里">Where the practice is</h2>
+            <p
+              class="lede"
+              data-zh="就在 Taman Ungku Tun Aminah 的店屋区，门口有停车位，不用绕圈找位。"
+            >
+              A shoplot in Taman Ungku Tun Aminah, with parking spaces directly
+              in front — no circling for a spot.
+            </p>
+            <div class="btn-row">
+              <a
+                class="btn btn-primary"
+                href="contact.html"
+                data-zh="看地图和路线"
+                >Map and directions</a
+              >
+            </div>
+          </div>
+
+          <div class="hero-card" data-reveal style="--d: 120ms">
+            <ul class="rows">
+              <li>
+                <span class="k" data-zh="地址">Address</span>
+                <span class="v"
+                  >36 &amp; 38, Jalan Pendekar 13,<br />Taman Ungku Tun
+                  Aminah,<br />81300 Johor Bahru, Johor</span
+                >
+              </li>
+              <li>
+                <span class="k" data-zh="停车">Parking</span>
+                <span class="v" data-zh="店面前有停车位"
+                  >Spaces in front of the shop</span
+                >
+              </li>
+              <li>
+                <span class="k">WhatsApp</span>
+                <span class="v"
+                  ><a href="https://wa.me/60123528627">012-352 8627</a></span
+                >
+              </li>
+              <li>
+                <span class="k" data-zh="看诊时间">Hours</span>
+                <span
+                  class="v"
+                  data-zh="会因公假调整，请以 WhatsApp 确认当天时间为准。"
+                  >Shift around public holidays — confirm the day on
+                  WhatsApp.</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap is-tight-above is-tight-below">
+        <div class="hero-card panel-lg" style="text-align: center" data-reveal>
+          <h2 data-zh="有问题，直接问">Questions? Just ask.</h2>
+          <p
+            class="lede"
+            style="margin-inline: auto"
+            data-zh="不用等到进诊所才问。"
+          >
+            No need to wait until you are in the chair.
+          </p>
+          <div class="btn-row" style="justify-content: center">
+            <a class="btn btn-primary" href="https://wa.me/60123528627"
+              >WhatsApp 012-352 8627</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="cols">
+        <div>
+          <strong>Sunwag Dental Surgery</strong><br />
+          <span class="muted">康维牙科（双威）</span>
+        </div>
+        <div>
+          <ul>
+            <li><a href="index.html" data-zh="首页">Home</a></li>
+            <li><a href="services.html" data-zh="服务">Services</a></li>
+            <li><a href="about.html" data-zh="关于">About</a></li>
+            <li><a href="faq.html" data-zh="常见问题">FAQ</a></li>
+            <li><a href="contact.html" data-zh="联络">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <a href="https://wa.me/60123528627">WhatsApp 012-352 8627</a>
+            </li>
+            <li><a href="tel:+60123528627" data-zh="拨打电话">Call us</a></li>
+          </ul>
+        </div>
+        <div class="muted">
+          36 &amp; 38, Jalan Pendekar 13,<br />
+          Taman Ungku Tun Aminah,<br />
+          81300 Johor Bahru, Johor
+        </div>
+      </div>
+      <p
+        class="tiny note"
+        data-zh="资料整理自商家公开资讯，最新营业时间与服务项目请以 WhatsApp 或电话确认为准。本页内容仅供参考，不构成诊断或治疗建议。"
+      >
+        Compiled from the clinic's publicly available information. Please
+        confirm current opening hours and treatments by WhatsApp or phone. This
+        page is general information only and is not a diagnosis or treatment
+        advice.
+      </p>
+    </footer>
+
+    <div class="dock">
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/60123528627"
+        data-zh="WhatsApp 预约"
+        >Book on WhatsApp</a
+      >
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="reveal.js"></script>
+    <script src="nav.js"></script>
+  </body>
+</html>

@@ -1,0 +1,358 @@
+<!doctype html>
+<!--
+  Sunwag Dental Surgery — Root canal treatment (service detail page)
+  Generated 2026-09-14 from the services list; hand-edit freely from here on.
+  ⚠️ General patient information only. The clinic has NOT confirmed that it offers this
+     treatment or reviewed this text. No prices, no testimonials, no promises
+     (MDC advertising rules). Durations are typical ranges, not clinic commitments.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-zh="根管治疗 | Sunwag Dental Surgery 康维牙科">
+      Root canal treatment | Sunwag Dental Surgery, Johor Bahru
+    </title>
+    <meta
+      name="description"
+      content="When the nerve inside a tooth is inflamed or infected, root canal treatment cleans it out so the tooth can stay. Here is when it is needed, what happens and why a crown often follows."
+      data-zh-content="牙齿里面的神经发炎或感染时，根管治疗把里面清干净，让这颗牙可以保留下来。下面说明什么时候需要、过程怎么进行，以及为什么之后常建议做牙冠。"
+    />
+    <meta property="og:title" content="Root canal treatment | Sunwag Dental Surgery" />
+    <meta property="og:description" content="When the nerve inside a tooth is inflamed or infected, root canal treatment cleans it out so the tooth can stay. Here is when it is needed, what happens and why a crown often follows." />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <div class="wash" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <!-- 极光背景。参数全在 data-* 上，改数值不用碰 aurora.js。
+           说明见 aurora.js 顶部；调参对照 reactbits.dev/backgrounds/aurora。
+
+           配色跟首页的 Scanner 守同一套硬规矩：背景不许进强调色
+           （--blue #1b63bf）的色域，必须留在 --sky-* 那一族。
+
+           lightMode 里 chroma 会被峰值通道归一化，所以传饱和色会被拉到
+           全饱和。#BFD8F4 实测下来是 35%，跟首页 Scanner 的 36% 基本持平 ——
+           两页背景效果不同，但视觉重量一致。
+           三个色标沿 uv.x 横向排列；A-B-A 读起来是中间一条光带。 -->
+      <canvas
+        class="aurora"
+        data-color1="#D0D6DC"
+        data-color2="#628DBC"
+        data-color3="#D0D6DC"
+        data-amplitude="1"
+        data-blend="0.3"
+        data-speed="0.55"
+        data-opacity="1"
+      ></canvas>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">Sunwag Dental</a>
+
+        <div class="nav-panel" id="nav-panel">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" data-zh="首页">Home</a>
+            </li>
+            <li>
+              <a href="services.html" aria-current="page" data-zh="服务"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a href="about.html" data-zh="关于">About</a>
+            </li>
+            <li>
+              <a href="faq.html" data-zh="常见问题">FAQ</a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <div class="lang" role="group" aria-label="Language">
+              <button type="button" data-lang-btn="en" aria-pressed="true">
+                EN
+              </button>
+              <button type="button" data-lang-btn="zh" aria-pressed="false">
+                中文
+              </button>
+            </div>
+            <a class="btn btn-primary" href="contact.html" data-zh="联络我们"
+              >Contact us</a
+            >
+          </div>
+        </div>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+          aria-label="Menu"
+          data-zh-aria-label="菜单"
+        >
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <header class="hero wrap svc-hero">
+        <div class="split">
+          <div class="hero-card" data-reveal>
+            <a class="crumb" href="services.html" data-zh="← 全部服务">← All treatments</a>
+            <span class="eyebrow" data-zh="修复">Restorative</span>
+            <h1 data-zh="根管治疗">Root canal treatment</h1>
+            <p class="lede" data-zh="牙齿里面的神经发炎或感染时，根管治疗把里面清干净，让这颗牙可以保留下来。下面说明什么时候需要、过程怎么进行，以及为什么之后常建议做牙冠。">When the nerve inside a tooth is inflamed or infected, root canal treatment cleans it out so the tooth can stay. Here is when it is needed, what happens and why a crown often follows.</p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://wa.me/60123528627" data-zh="WhatsApp 询问">Ask on WhatsApp</a>
+              <a class="btn btn-ghost" href="#faq" data-zh="常见问题">Common questions</a>
+            </div>
+          </div>
+          <figure class="shot" data-reveal style="margin: 0; --d: 120ms">
+            <img
+              src="images/rootcanal-photo.jpg"
+              alt="A root canal file in a molar isolated behind a rubber dam"
+              data-zh-alt="根管治疗中，臼齿以橡皮障隔离，根管锉进入根管"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </header>
+
+      <section class="wrap is-tight-above">
+        <div class="svc-detail">
+          <div class="card svc-glance" data-reveal>
+            <h2 data-zh="重点整理">At a glance</h2>
+            <ul class="rows">
+              <li>
+                <span class="k" data-zh="常见征兆">Signs</span>
+                <span class="v" data-zh="冷热刺激后持续痛、抽痛、肿，或牙齿变暗；有时完全没有症状">Pain that lingers after hot or cold, throbbing, swelling, or a darkening tooth — sometimes no symptoms at all</span>
+              </li>
+              <li>
+                <span class="k" data-zh="就诊次数">Visits</span>
+                <span class="v" data-zh="通常一到两次，有时更多">Usually one to two, occasionally more</span>
+              </li>
+              <li>
+                <span class="k" data-zh="麻醉">Anaesthetic</span>
+                <span class="v" data-zh="局部麻醉">Local anaesthetic</span>
+              </li>
+              <li>
+                <span class="k" data-zh="治疗后">Afterwards</span>
+                <span class="v" data-zh="补牙封口；后牙通常建议再做牙冠">A filling, and for back teeth usually a crown</span>
+              </li>
+            </ul>
+            <p class="tiny" data-zh="以上为一般情况，实际以检查结果为准。">Typical ranges only — your examination decides what applies to you.</p>
+          </div>
+          <div class="card svc-know" data-reveal style="--d: 100ms">
+            <h2 data-zh="开始前值得知道的事">Worth knowing first</h2>
+            <ul class="svc-bullets">
+              <li data-zh="抗生素可以暂时压下发炎，但解决不了牙齿里面的问题。">Antibiotics can calm a flare-up but do not fix the problem inside the tooth.</li>
+              <li data-zh="做过根管的牙齿比较脆。没有按建议做牙冠，是这类牙之后裂开的常见原因。">A root-treated tooth is more brittle. Skipping the recommended crown is a common reason these teeth later split.</li>
+              <li data-zh="治疗后几天咬东西会有点酸痛，属于正常现象。">Tenderness when biting for a few days afterwards is normal.</li>
+              <li data-zh="不是每颗牙都救得回来。如果牙齿裂穿或破坏太严重，我们会说明其他选择。">Not every tooth can be saved. If the tooth is cracked through or too broken down, we will explain the other options.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="治疗过程">What happens, step by step</h2>
+          <p class="muted" data-zh="每一步开始前都会先说明，你同意了才会进行。">Every visit starts with an explanation. Nothing begins until you have agreed to it.</p>
+        </div>
+        <div class="grid">
+          <article class="card" data-reveal style="--d: 0ms">
+            <div class="card-num">01</div>
+            <h3 data-zh="诊断">Diagnosis</h3>
+            <p class="muted" data-zh="检查牙齿并拍 X 光，看牙根状况和感染是否扩散。">We test the tooth and take an X-ray to see the root and whether infection has spread.</p>
+          </article>
+          <article class="card" data-reveal style="--d: 80ms">
+            <div class="card-num">02</div>
+            <h3 data-zh="清理根管">Cleaning the canals</h3>
+            <p class="muted" data-zh="打麻醉后用橡皮障隔离牙齿，清除发炎的牙髓，清洁并修整根管。">The tooth is numbed and isolated with a rubber sheet. The inflamed pulp is removed and the canals are cleaned and shaped.</p>
+          </article>
+          <article class="card" data-reveal style="--d: 160ms">
+            <div class="card-num">03</div>
+            <h3 data-zh="充填封闭">Sealing</h3>
+            <p class="muted" data-zh="把根管填满并封闭。需要分次进行时，中间会先做临时填补。">The canals are filled and sealed. If more than one visit is needed, a temporary filling goes on between visits.</p>
+          </article>
+          <article class="card" data-reveal style="--d: 240ms">
+            <div class="card-num">04</div>
+            <h3 data-zh="保护牙齿">Protecting the tooth</h3>
+            <p class="muted" data-zh="最后用永久填料封好。后牙通常要做牙冠，避免咀嚼时裂开。">A permanent filling closes the tooth. Back teeth usually need a crown so they do not crack under chewing.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="wrap" id="faq">
+        <div class="faq-layout">
+          <aside class="faq-aside">
+            <div class="card" data-reveal>
+              <h2 data-zh="还有疑问？">Still unsure?</h2>
+              <p class="muted" data-zh="把情况用讯息说一说，我们会告诉你需不需要来一趟。">Send a message with what is going on. We will tell you whether it is worth coming in.</p>
+              <a class="btn btn-primary" href="https://wa.me/60123528627" data-zh="WhatsApp 询问">Ask on WhatsApp</a>
+            </div>
+          </aside>
+          <div class="faq-list">
+            <div class="section-head" data-reveal style="margin-bottom: 1rem">
+              <h2 data-zh="常见问题">Common questions</h2>
+            </div>
+            <details open data-reveal>
+              <summary data-zh="根管治疗会很痛吗？">Is a root canal painful?</summary>
+              <div class="answer">
+                <p data-zh="打了麻醉后，感觉通常和补牙差不多。大家印象中的痛，多半是治疗前感染造成的痛。">With local anaesthetic it usually feels similar to having a filling. The pain people associate with it is often the infection before treatment.</p>
+              </div>
+            </details>
+            <details data-reveal>
+              <summary data-zh="不处理会怎样？">What if I leave it?</summary>
+              <div class="answer">
+                <p data-zh="感染不会自己好，可能扩散到骨头形成脓包，最后可能保不住这颗牙。">The infection does not heal on its own. It can spread into the bone and cause an abscess, and the tooth may eventually be lost.</p>
+              </div>
+            </details>
+            <details data-reveal>
+              <summary data-zh="为什么不直接拔掉？">Why not just pull the tooth?</summary>
+              <div class="answer">
+                <p data-zh="拔牙也是一个选择，但保留自己的牙通常对咀嚼和邻牙比较好。拔掉之后的空位，日后可能要靠植牙、牙桥或假牙来补。">That is an option, but keeping your own tooth is usually better for chewing and for the teeth around it. A gap may later need an implant, bridge or denture.</p>
+              </div>
+            </details>
+            <details data-reveal>
+              <summary data-zh="根管治疗会失败吗？">Can a root canal fail?</summary>
+              <div class="answer">
+                <p data-zh="大多数治疗后的牙齿状况良好，但有时感染会复发。通常可以重新治疗，或考虑其他做法。">Most treated teeth do well, but sometimes infection returns. The tooth can often be treated again, or other options considered.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap">
+        <div class="svc-visit">
+          <div data-reveal>
+            <h2 data-zh="来诊所">Visit us</h2>
+            <p class="muted">
+              36 &amp; 38, Jalan Pendekar 13,<br />
+              Taman Ungku Tun Aminah,<br />
+              81300 Johor Bahru, Johor
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://wa.me/60123528627">WhatsApp 012-352 8627</a>
+              <a
+                class="btn btn-ghost"
+                href="https://www.google.com/maps/dir/?api=1&amp;destination=36%20%26%2038%2C%20Jalan%20Pendekar%2013%2C%20Taman%20Ungku%20Tun%20Aminah%2C%2081300%20Johor%20Bahru%2C%20Johor"
+                data-zh="Google Maps 导航"
+                >Open in Google Maps</a
+              >
+            </div>
+          </div>
+          <div class="map" data-reveal style="--d: 120ms">
+            <iframe
+              src="https://www.google.com/maps?q=36%20%26%2038%2C%20Jalan%20Pendekar%2013%2C%20Taman%20Ungku%20Tun%20Aminah%2C%2081300%20Johor%20Bahru%2C%20Johor&amp;output=embed"
+              title="Map showing Sunwag Dental Surgery"
+              data-zh-aria-label="Sunwag Dental Surgery 地图"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+        </div>
+      </section>
+
+      <section class="wrap is-tight-below">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="其他服务">Other treatments</h2>
+        </div>
+        <div class="svc-others">
+          <a class="card svc-other" href="service-implants.html" data-reveal>
+            <img src="images/implant.jpg" alt="" loading="lazy" decoding="async" />
+            <span data-zh="植牙">Dental implants</span>
+          </a>
+          <a class="card svc-other" href="service-braces.html" data-reveal>
+            <img src="images/ortho2.jpg" alt="" loading="lazy" decoding="async" />
+            <span data-zh="牙齿矫正（牙套）">Braces</span>
+          </a>
+          <a class="card svc-other" href="service-aligners.html" data-reveal>
+            <img src="images/aligner.jpg" alt="" loading="lazy" decoding="async" />
+            <span data-zh="隐形牙套（隐适美）">Clear aligners (Invisalign)</span>
+          </a>
+          <a class="card svc-other" href="service-whitening.html" data-reveal>
+            <img src="images/whitening-photo.jpg" alt="" loading="lazy" decoding="async" />
+            <span data-zh="牙齿美白">Teeth whitening</span>
+          </a>
+          <a class="card svc-other" href="service-extraction.html" data-reveal>
+            <img src="images/extraction-photo.jpg" alt="" loading="lazy" decoding="async" />
+            <span data-zh="拔牙">Tooth extraction</span>
+          </a>
+          <a class="card svc-other" href="service-fillings.html" data-reveal>
+            <img src="images/filling.jpg" alt="" loading="lazy" decoding="async" />
+            <span data-zh="蛀牙填补">Fillings</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="cols">
+        <div>
+          <strong>Sunwag Dental Surgery</strong><br />
+          <span class="muted">康维牙科（双威）</span>
+        </div>
+        <div>
+          <ul>
+            <li><a href="index.html" data-zh="首页">Home</a></li>
+            <li><a href="services.html" data-zh="服务">Services</a></li>
+            <li><a href="about.html" data-zh="关于">About</a></li>
+            <li><a href="faq.html" data-zh="常见问题">FAQ</a></li>
+            <li><a href="contact.html" data-zh="联络">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <a href="https://wa.me/60123528627">WhatsApp 012-352 8627</a>
+            </li>
+            <li><a href="tel:+60123528627" data-zh="拨打电话">Call us</a></li>
+          </ul>
+        </div>
+        <div class="muted">
+          36 &amp; 38, Jalan Pendekar 13,<br />
+          Taman Ungku Tun Aminah,<br />
+          81300 Johor Bahru, Johor
+        </div>
+      </div>
+      <p
+        class="tiny note"
+        data-zh="资料整理自商家公开资讯，最新营业时间与服务项目请以 WhatsApp 或电话确认为准。本页内容仅供参考，不构成诊断或治疗建议。"
+      >
+        Compiled from the clinic's publicly available information. Please
+        confirm current opening hours and treatments by WhatsApp or phone. This
+        page is general information only and is not a diagnosis or treatment
+        advice.
+      </p>
+    </footer>
+
+    <div class="dock">
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/60123528627"
+        data-zh="WhatsApp 预约"
+        >Book on WhatsApp</a
+      >
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="reveal.js"></script>
+    <script src="nav.js"></script>
+    <script src="aurora.js"></script>
+  </body>
+</html>

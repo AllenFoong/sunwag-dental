@@ -1,0 +1,542 @@
+<!doctype html>
+<!--
+  Sunwag Dental Surgery — Home
+  Design : Soft Structuralism / light blue (taste-skill · high-end-visual-design)
+  i18n   : English ships in the markup; Chinese lives in data-zh="…".
+           No JS  → complete English site. See i18n.js.
+  ⚠️ Before going live (see ../README.md): services · opening hours · photos · written consent
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title
+      data-zh="Sunwag Dental Surgery 康维牙科 | Taman Ungku Tun Aminah 牙科诊所"
+    >
+      Sunwag Dental Surgery | Dentist in Taman Ungku Tun Aminah, Johor Bahru
+    </title>
+    <meta
+      name="description"
+      content="Sunwag Dental Surgery in Taman Ungku Tun Aminah, Johor Bahru. Cleanings and fillings, teeth whitening, implants and orthodontics. WhatsApp 012-352 8627 to book."
+      data-zh-content="Sunwag Dental Surgery 康维牙科，位于新山 Taman Ungku Tun Aminah。洗牙补牙、牙齿美白、植牙与牙齿矫正。WhatsApp 012-352 8627 预约。"
+    />
+    <meta property="og:title" content="Sunwag Dental Surgery 康维牙科" />
+    <meta
+      property="og:description"
+      content="A dental clinic in Taman Ungku Tun Aminah, Johor Bahru. WhatsApp 012-352 8627."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <div class="wash" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <!-- 扫描信号场。参数全在 data-* 上，改数值不用碰 scanner.js。
+           说明见 scanner.js 顶部；调参对照 reactbits.dev/backgrounds/scanner。
+
+           配色的两条硬规矩（2026-09-05 撞色修正后定的）：
+           1. 背景不许进强调色（--blue #1b63bf）的色域。整条线的色板
+              必须留在 --sky-* 那一族，也就是「底色」而不是「元素」。
+              违反的后果：h1 里的 .accent 跟背景争同一个视觉层级。
+           2. color3 是「线芯最亮处」。组件默认给白色是因为它预设深色底；
+              这站是白底，白色峰值等于隐形，所以给最深的那档 sky。
+
+           强度（色板深浅 + opacity）是一条轴，色散是另一条，不要混。
+           要更淡：#E8F1FC / #CFE1F8 / #A9CBEE + opacity 0.70（D1）或 0.40。
+           要更淡一点点：#DCEAFA / #BFD8F4 / #93BCE9 + opacity 0.70（D2）。
+           colorSpread 压到 0.1：0.7 会在线边缘拉出紫/青镶边，
+           那是 CRT 色散的味道，跟诊所不搭。 -->
+      <canvas
+        class="scanner"
+        data-color1="#DCEAFA"
+        data-color2="#B3D0F2"
+        data-color3="#8FB9E8"
+        data-color-spread="0.1"
+        data-opacity="0.85"
+        data-speed="0.35"
+        data-sweep-speed="0.18"
+        data-band-density="9"
+        data-line-sharpness="6.5"
+        data-glow="0.14"
+        data-vignette="0.6"
+        data-scanline="false"
+        data-grain="false"
+      ></canvas>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">Sunwag Dental</a>
+
+        <div class="nav-panel" id="nav-panel">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" aria-current="page" data-zh="首页">Home</a>
+            </li>
+            <li>
+              <a href="services.html" data-zh="服务">Services</a>
+            </li>
+            <li>
+              <a href="about.html" data-zh="关于">About</a>
+            </li>
+            <li>
+              <a href="faq.html" data-zh="常见问题">FAQ</a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <div class="lang" role="group" aria-label="Language">
+              <button type="button" data-lang-btn="en" aria-pressed="true">
+                EN
+              </button>
+              <button type="button" data-lang-btn="zh" aria-pressed="false">
+                中文
+              </button>
+            </div>
+            <a class="btn btn-primary" href="contact.html" data-zh="联络我们"
+              >Contact us</a
+            >
+          </div>
+        </div>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+          aria-label="Menu"
+          data-zh-aria-label="菜单"
+        >
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <!-- ── Editorial split ────────────────────────────────────── -->
+      <header class="hero wrap">
+        <div class="split">
+          <div data-reveal>
+            <span class="eyebrow">Taman Ungku Tun Aminah</span>
+            <h1
+              data-zh='看牙这件事，<br><span class="accent">可以不用</span>那么紧张。'
+            >
+              Going to the dentist<br /><span class="accent"
+                >doesn't have to</span
+              >
+              be stressful.
+            </h1>
+            <p
+              class="lede"
+              data-zh="Sunwag Dental Surgery 康维牙科。洗牙补牙、牙齿美白、植牙与牙齿矫正 —— 检查完先把状况说清楚，你决定了我们才开始。"
+            >
+              Sunwag Dental Surgery. Cleanings and fillings, teeth
+              whitening, implants and orthodontics — we explain what we find
+              before anything starts, and you decide.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://wa.me/60123528627">
+                <span data-zh="WhatsApp 预约">Book on WhatsApp</span>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a
+                class="btn btn-ghost"
+                href="services.html"
+                data-zh="看看服务项目"
+                >See what we do</a
+              >
+            </div>
+          </div>
+
+          <figure class="shot" data-reveal style="margin: 0; --d: 120ms">
+            <img
+              src="images/shopfront.jpg"
+              alt="Illustrated view of the Sunwag Dental Surgery shopfront on Jalan Pendekar 13"
+              data-zh-alt="康维牙科位于 Jalan Pendekar 13 的店面（示意图）"
+              width="928"
+              height="1152"
+              loading="eager"
+              decoding="async"
+              onerror="this.remove()"
+            />
+          </figure>
+        </div>
+      </header>
+
+      <!-- ── 诊所简介 + 三张数字卡 ─────────────────────────────
+           参考 T Dental 的 Smile with Trust，去掉了团队照（没有素材，也不用
+           AI 生成的假员工照顶替）。
+           合规（见 01-分析与规格书.md）：
+             · 不放评分 / 评论数 / 「服务过多少人」—— 没数据，且规格书明确排除
+             · 写「综合牙科 general dental practice」，不写 specialist /
+               专科 —— 马来西亚「专科医生」是注册头衔，不能随便用
+           数字（2017 / 500+ / 10+）由用户 2026-09-13 提供。
+           数字效果：React Bits <Counter> 的原生版，见 counter.js。
+           植牙卡用「成功植牙案例 / Successful implant cases」是用户 2026-09-14
+           的决定（先前提过「成功」属结果主张，用户确认保留）。 -->
+      <section class="wrap">
+        <div class="section-head trust-head" data-reveal>
+          <span class="eyebrow" data-zh="关于诊所">About the clinic</span>
+          <h2 data-zh="治疗，从检查开始。">Treatment starts with an examination.</h2>
+          <p
+            class="lede"
+            data-zh="康维牙科是 Taman Ungku Tun Aminah 的综合牙科诊所。日常的检查、洗牙与补牙之外，也处理植牙、根管治疗与牙齿矫正等较复杂的治疗。治疗方案依据检查结果制定，需要时配合 X 光片评估，开始前会先把可行的选择说清楚。"
+          >
+            Sunwag Dental Surgery is a general dental practice in Taman Ungku
+            Tun Aminah. Alongside routine check-ups, scaling and fillings, we
+            handle more involved work such as implants, root canal treatment
+            and orthodontics. Every plan is based on an examination, with
+            X-rays where they are needed, and the options are explained before
+            anything begins.
+          </p>
+        </div>
+
+        <div class="trust-cards">
+          <div class="trust-card" data-reveal>
+            <div class="trust-num"><span class="counter" data-counter data-value="2017" data-from="2000" data-places="1000,100,10,1">2017</span></div>
+            <div class="trust-label" data-zh="扎根在皇后">
+              Established in Tun Aminah
+            </div>
+          </div>
+          <div class="trust-card" data-reveal style="--d: 80ms">
+            <div class="trust-num"><span class="counter" data-counter data-value="500" data-places="100,10,1">500</span><span class="trust-unit">+</span></div>
+            <div class="trust-label" data-zh="成功植牙案例">Successful implant cases</div>
+          </div>
+          <div class="trust-card" data-reveal style="--d: 160ms">
+            <div class="trust-num"><span class="counter" data-counter data-value="10" data-places="10,1">10</span><span class="trust-unit">+</span></div>
+            <div class="trust-label" data-zh="多项服务为您提供">Services provided</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── 服务：粘性堆叠卡片 ────────────────────── -->
+      <section class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="我们做什么">What we do</h2>
+          <p
+            class="lede"
+            data-zh="从半年一次的例行检查，到需要拍片评估的植牙。"
+          >
+            From a six-monthly check-up to implants that need an X-ray
+            before anything is decided.
+          </p>
+        </div>
+
+        <div class="stack">
+          <div class="stack-item">
+            <article class="card card-row" data-reveal>
+              <div class="card-art">
+                <img
+                  src="images/ortho2.jpg"
+                  alt="Braces on the upper teeth being adjusted"
+                  data-zh-alt="上排牙齿的牙套正在调整"
+                  width="612"
+                  height="612"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div>
+                <h3 data-zh="牙齿矫正">Orthodontics</h3>
+                <p
+                  class="muted"
+                  data-zh="传统牙套与隐形牙套。先了解你想改善的地方，检查后说明可行的方案与大概需要的时间。"
+                >
+                  Braces and clear aligners. We start from what you would like
+                  to change, then explain the workable options and how long each
+                  one takes.
+                </p>
+                <a class="link-more" href="service-braces.html" data-zh="传统牙套与隐形牙套的差别"
+                  >Braces and clear aligners</a
+                >
+              </div>
+            </article>
+          </div>
+          <div class="stack-item">
+            <article class="card card-row" data-reveal>
+              <div class="card-art">
+                <img
+                  src="images/filling.jpg"
+                  alt="A back tooth being prepared for a filling"
+                  data-zh-alt="臼齿正在做补牙前的处理"
+                  width="1024"
+                  height="1024"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div>
+                <h3 data-zh="洗牙与补牙">Cleaning &amp; fillings</h3>
+                <p
+                  class="muted"
+                  data-zh="定期洁牙、蛀牙填补。半年一次的例行检查，能省下之后很多麻烦。"
+                >
+                  Routine scaling and cavity fillings. A check-up every six
+                  months saves a lot of trouble later on.
+                </p>
+                <a class="link-more" href="services.html#checkup" data-zh="例行检查包含哪些"
+                  >What a check-up covers</a
+                >
+              </div>
+            </article>
+          </div>
+          <div class="stack-item">
+            <article class="card card-row" data-reveal>
+              <div class="card-art">
+                <img
+                  src="images/implant.jpg"
+                  alt="A model showing an implant post and crown set in the jaw"
+                  data-zh-alt="植体与牙冠在牙床中的模型示意"
+                  width="736"
+                  height="736"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div>
+                <h3 data-zh="植牙">Implants</h3>
+                <p
+                  class="muted"
+                  data-zh="缺牙修复。需要先检查骨质与牙龈条件，再讨论适合的方案。"
+                >
+                  Replacing a missing tooth. We check bone and gum condition
+                  first, then talk through what suits you.
+                </p>
+                <a
+                  class="link-more"
+                  href="service-implants.html"
+                  data-zh="植牙是怎么装上去的"
+                  >How an implant goes in</a
+                >
+              </div>
+            </article>
+          </div>
+          <div class="stack-item">
+            <article class="card card-row" data-reveal>
+              <div class="card-art">
+                <img
+                  src="images/whitening-photo.jpg"
+                  alt="A blue whitening light shining on teeth held apart by a cheek retractor, patient in orange protective glasses"
+                  data-zh-alt="牙齿美白：开口器撑开嘴唇，蓝光灯照射牙齿，患者戴橙色护目镜"
+                  width="1100"
+                  height="1100"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div>
+                <h3 data-zh="牙齿美白">Teeth whitening</h3>
+                <p
+                  class="muted"
+                  data-zh="美白只会让天然牙釉质变亮，补过的牙和牙冠颜色不会跟着变。所以会先检查，再说明大概能亮到什么程度、能维持多久 —— 不会让你带着不切实际的期待开始。"
+                >
+                  Whitening only lightens natural enamel — fillings and crowns
+                  stay the same shade. We check first, then tell you how much
+                  lighter is realistic and how long it tends to last, so you
+                  start with the right expectations.
+                </p>
+                <a class="link-more" href="service-whitening.html" data-zh="美白前会先检查什么"
+                  >What we check first</a
+                >
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Before you come ────────────────────────────────────── -->
+      <section class="wrap">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="来之前想知道的">Before you come</h2>
+        </div>
+        <div class="grid">
+          <article class="card" data-reveal>
+            <div class="card-num">01</div>
+            <h3 data-zh="先 WhatsApp 一声">Message us first</h3>
+            <p
+              class="muted"
+              data-zh="传讯息说你想处理什么、大概什么时间方便，我们帮你安排，不用到现场排队等。"
+            >
+              Tell us what you would like looked at and roughly when suits you.
+              We will find you a slot, so you are not sitting and waiting.
+            </p>
+          </article>
+          <article class="card" data-reveal style="--d: 80ms">
+            <div class="card-num">02</div>
+            <h3 data-zh="会先说明再动手">We explain before we start</h3>
+            <p
+              class="muted"
+              data-zh="检查完会告诉你看到什么、有哪些选择、各自要花多久，你决定了再开始。"
+            >
+              After the examination we go through what we found, what the
+              options are and how long each takes. You decide, then we begin.
+            </p>
+          </article>
+          <article class="card" data-reveal style="--d: 160ms">
+            <div class="card-num">03</div>
+            <h3 data-zh="就在 Tun Aminah">We are in Tun Aminah</h3>
+            <p
+              class="muted"
+              data-zh="Jalan Pendekar 13，店面前有停车位。从 Skudai 一带过来很方便。"
+            >
+              Jalan Pendekar 13, with parking right in front. An easy drive from
+              anywhere around Skudai.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ── Location ───────────────────────────────────────────── -->
+      <section class="wrap is-tight-below">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="诊所位置">Where we are</h2>
+          <p class="lede">
+            36 &amp; 38, Jalan Pendekar 13, Taman Ungku Tun Aminah, 81300 Johor
+            Bahru, Johor
+          </p>
+        </div>
+        <div class="map" data-reveal>
+          <iframe
+            src="https://www.google.com/maps?q=36%20%26%2038%2C%20Jalan%20Pendekar%2013%2C%20Taman%20Ungku%20Tun%20Aminah%2C%2081300%20Johor%20Bahru%2C%20Johor&output=embed"
+            title="Map showing Sunwag Dental Surgery"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="btn-row" data-reveal>
+          <a
+            class="btn btn-ghost"
+            href="https://www.google.com/maps/dir/?api=1&destination=36%20%26%2038%2C%20Jalan%20Pendekar%2013%2C%20Taman%20Ungku%20Tun%20Aminah%2C%2081300%20Johor%20Bahru"
+            data-zh="开启导航"
+            >Get directions</a
+          >
+          <a class="btn btn-ghost" href="contact.html" data-zh="联络方式"
+            >Contact details</a
+          >
+        </div>
+      </section>
+
+      <!-- ── Closing ────────────────────────────────────────────── -->
+      <section class="wrap is-tight-above is-tight-below">
+        <div class="hero-card panel-lg" style="text-align: center" data-reveal>
+          <h2 data-zh="有问题，直接问">Questions? Just ask.</h2>
+          <p
+            class="lede"
+            style="margin-inline: auto"
+            data-zh="不用等到进了诊所才问。WhatsApp 传个讯息就可以。"
+          >
+            You do not have to wait until you are in the chair. A WhatsApp
+            message is enough.
+          </p>
+          <div class="btn-row" style="justify-content: center">
+            <a class="btn btn-primary" href="https://wa.me/60123528627">
+              <span>WhatsApp 012-352 8627</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </a>
+            <a class="btn btn-ghost" href="tel:+60123528627" data-zh="拨打电话"
+              >Call us</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="cols">
+        <div>
+          <strong>Sunwag Dental Surgery</strong><br />
+          <span class="muted">康维牙科（双威）</span>
+        </div>
+        <div>
+          <ul>
+            <li><a href="index.html" data-zh="首页">Home</a></li>
+            <li><a href="services.html" data-zh="服务">Services</a></li>
+            <li><a href="about.html" data-zh="关于">About</a></li>
+            <li><a href="faq.html" data-zh="常见问题">FAQ</a></li>
+            <li><a href="contact.html" data-zh="联络">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <a href="https://wa.me/60123528627">WhatsApp 012-352 8627</a>
+            </li>
+            <li><a href="tel:+60123528627" data-zh="拨打电话">Call us</a></li>
+          </ul>
+        </div>
+        <div class="muted">
+          36 &amp; 38, Jalan Pendekar 13,<br />
+          Taman Ungku Tun Aminah,<br />
+          81300 Johor Bahru, Johor
+        </div>
+      </div>
+      <p
+        class="tiny note"
+        data-zh="资料整理自商家公开资讯，最新营业时间与服务项目请以 WhatsApp 或电话确认为准。"
+      >
+        Compiled from the clinic's publicly available information. Please
+        confirm current opening hours and treatments by WhatsApp or phone.
+      </p>
+    </footer>
+
+    <div class="dock">
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/60123528627"
+        data-zh="WhatsApp 预约"
+        >Book on WhatsApp</a
+      >
+    </div>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dentist",
+        "name": "Sunwag Dental Surgery 康维牙科",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "36 & 38, Jalan Pendekar 13, Taman Ungku Tun Aminah",
+          "addressLocality": "Johor Bahru",
+          "addressRegion": "Johor",
+          "postalCode": "81300",
+          "addressCountry": "MY"
+        },
+        "telephone": "+60123528627"
+      }
+    </script>
+    <script src="i18n.js"></script>
+    <script src="reveal.js"></script>
+    <script src="nav.js"></script>
+    <script src="scanner.js"></script>
+    <script src="counter.js"></script>
+  </body>
+</html>

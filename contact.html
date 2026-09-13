@@ -1,0 +1,339 @@
+<!doctype html>
+<!--
+  Sunwag Dental Surgery — Contact
+  ⚠️ No specific opening hours anywhere on the site: IG / Google / Waze / dentaljb
+     contradict each other. Once the clinic confirms, fill in the "Opening hours" row
+     below and add openingHours to the JSON-LD.
+  ⚠️ No contact form: this is a static site with no backend — a form would submit
+     into nowhere and the clinic would think nobody was enquiring. Everything routes
+     to WhatsApp and phone.
+     The one <form> on this page is not an exception to that: it is a GET to
+     wa.me?text=, i.e. a nicer way of opening WhatsApp. No endpoint, no storage,
+     and it still works with JavaScript disabled.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-zh="联络与位置 | Sunwag Dental Surgery 康维牙科">
+      Contact &amp; Location | Sunwag Dental Surgery, Johor Bahru
+    </title>
+    <meta
+      name="description"
+      content="Sunwag Dental Surgery: 36 & 38, Jalan Pendekar 13, Taman Ungku Tun Aminah, 81300 Johor Bahru. WhatsApp 012-352 8627 to book."
+      data-zh-content="Sunwag Dental Surgery 康维牙科：36 & 38, Jalan Pendekar 13, Taman Ungku Tun Aminah, 81300 Johor Bahru。WhatsApp 012-352 8627 预约。"
+    />
+    <meta property="og:title" content="Contact | Sunwag Dental Surgery" />
+    <meta
+      property="og:description"
+      content="Taman Ungku Tun Aminah, Johor Bahru. WhatsApp 012-352 8627."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <div class="wash" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">Sunwag Dental</a>
+
+        <div class="nav-panel" id="nav-panel">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" data-zh="首页">Home</a>
+            </li>
+            <li>
+              <a href="services.html" data-zh="服务">Services</a>
+            </li>
+            <li>
+              <a href="about.html" data-zh="关于">About</a>
+            </li>
+            <li>
+              <a href="faq.html" data-zh="常见问题">FAQ</a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <div class="lang" role="group" aria-label="Language">
+              <button type="button" data-lang-btn="en" aria-pressed="true">
+                EN
+              </button>
+              <button type="button" data-lang-btn="zh" aria-pressed="false">
+                中文
+              </button>
+            </div>
+            <a
+              class="btn btn-primary"
+              href="contact.html" aria-current="page"
+              data-zh="联络我们"
+              >Contact us</a
+            >
+          </div>
+        </div>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+          aria-label="Menu"
+          data-zh-aria-label="菜单"
+        >
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <header class="hero wrap">
+        <div class="split">
+          <div class="hero-card" data-reveal>
+            <span class="eyebrow" data-zh="联络">Contact</span>
+            <h1 data-zh="传个讯息<br>就可以了。">
+              One message<br />is all it takes.
+            </h1>
+            <p
+              class="lede"
+              data-zh="说明你想处理什么、什么时间方便，我们帮你安排时段。"
+            >
+              Tell us what you would like looked at and when suits you, and we
+              will arrange a time.
+            </p>
+            <div class="btn-row">
+              <a class="btn btn-primary" href="https://wa.me/60123528627"
+                >WhatsApp 012-352 8627</a
+              >
+              <a
+                class="btn btn-ghost"
+                href="tel:+60123528627"
+                data-zh="拨打电话"
+                >Call us</a
+              >
+            </div>
+
+            <!-- Not a contact form: a GET straight to wa.me, so whatever is typed
+                 arrives prefilled in WhatsApp. Nothing is stored, nothing is sent
+                 anywhere the clinic would not see. Works with JavaScript off. -->
+            <form
+              class="pill-field"
+              action="https://wa.me/60123528627"
+              method="get"
+              target="_blank"
+              rel="noopener"
+            >
+              <label class="sr-only" for="wa-text" data-zh="想问什么？"
+                >What would you like to ask?</label
+              >
+              <input
+                id="wa-text"
+                name="text"
+                type="text"
+                autocomplete="off"
+                placeholder="Type your question here"
+                data-zh-placeholder="想问什么，写在这里"
+              />
+              <button class="btn btn-primary" type="submit" data-zh="发送">
+                Send
+              </button>
+            </form>
+            <p
+              class="tiny muted pill-note"
+              data-zh="按下会打开 WhatsApp，内容已经帮你填好，送出前还能修改。"
+            >
+              This opens WhatsApp with your message already written — you can
+              still edit it before sending.
+            </p>
+          </div>
+
+          <div class="hero-card" data-reveal style="--d: 120ms">
+            <ul class="rows">
+              <li>
+                <span class="k">WhatsApp</span>
+                <span class="v"
+                  ><a href="https://wa.me/60123528627">012-352 8627</a></span
+                >
+              </li>
+              <li>
+                <span class="k" data-zh="电话">Phone</span>
+                <span class="v"
+                  ><a href="tel:+60123528627">012-352 8627</a></span
+                >
+              </li>
+              <li>
+                <span class="k" data-zh="地址">Address</span>
+                <span class="v"
+                  >36 &amp; 38, Jalan Pendekar 13,<br />Taman Ungku Tun
+                  Aminah,<br />81300 Johor Bahru, Johor</span
+                >
+              </li>
+              <li>
+                <span class="k" data-zh="营业时间">Opening hours</span>
+                <span
+                  class="v"
+                  data-zh='时间会因公假与临时状况调整，<br>请以 <a href="https://wa.me/60123528627">WhatsApp</a> 确认当天时间为准。'
+                  >Hours shift around public holidays,<br />so please confirm
+                  the day on
+                  <a href="https://wa.me/60123528627">WhatsApp</a>.</span
+                >
+              </li>
+              <li>
+                <span class="k" data-zh="停车">Parking</span>
+                <span class="v" data-zh="店面前有停车位"
+                  >Spaces in front of the shop</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <section class="wrap" style="padding-top: 0">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="怎么找到我们">Finding us</h2>
+          <p
+            class="muted"
+            data-zh="在 Jalan Pendekar 13 的店屋，Taman Ungku Tun Aminah 一带。"
+          >
+            A shoplot on Jalan Pendekar 13, in the Taman Ungku Tun Aminah area.
+          </p>
+        </div>
+        <div class="map" data-reveal>
+          <iframe
+            src="https://www.google.com/maps?q=36%20%26%2038%2C%20Jalan%20Pendekar%2013%2C%20Taman%20Ungku%20Tun%20Aminah%2C%2081300%20Johor%20Bahru%2C%20Johor&output=embed"
+            title="Map showing Sunwag Dental Surgery"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div class="btn-row" data-reveal>
+          <a
+            class="btn btn-ghost"
+            href="https://www.google.com/maps/dir/?api=1&destination=36%20%26%2038%2C%20Jalan%20Pendekar%2013%2C%20Taman%20Ungku%20Tun%20Aminah%2C%2081300%20Johor%20Bahru"
+            data-zh="Google Maps 导航"
+            >Open in Google Maps</a
+          >
+          <a
+            class="btn btn-ghost"
+            href="https://waze.com/ul?q=Sunwag%20Dental%20Surgery%20Taman%20Ungku%20Tun%20Aminah"
+            data-zh="用 Waze 导航"
+            >Open in Waze</a
+          >
+        </div>
+      </section>
+
+      <section class="wrap">
+        <div class="grid">
+          <article class="card" data-reveal>
+            <h3 data-zh="预约">Booking</h3>
+            <p
+              class="muted"
+              data-zh="WhatsApp 传一句想处理什么、什么时候方便，就可以了。"
+            >
+              One WhatsApp message with what you need and when you are free is
+              enough.
+            </p>
+          </article>
+          <article class="card" data-reveal style="--d: 80ms">
+            <h3 data-zh="牙痛或紧急状况">Pain or emergencies</h3>
+            <p
+              class="muted"
+              data-zh="先传讯息说明情况，我们看当天能不能安排时间。"
+            >
+              Message us with the details and we will see whether we can fit you
+              in the same day.
+            </p>
+          </article>
+          <article class="card" data-reveal style="--d: 160ms">
+            <h3 data-zh="第一次来">First visit</h3>
+            <p
+              class="muted"
+              data-zh="带身份证件。之前的 X 光片或正在吃的药，也请一并告知。"
+            >
+              Bring identification. Mention any previous X-rays and any
+              medication you take regularly.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="cols">
+        <div>
+          <strong>Sunwag Dental Surgery</strong><br />
+          <span class="muted">康维牙科（双威）</span>
+        </div>
+        <div>
+          <ul>
+            <li><a href="index.html" data-zh="首页">Home</a></li>
+            <li><a href="services.html" data-zh="服务">Services</a></li>
+            <li><a href="about.html" data-zh="关于">About</a></li>
+            <li><a href="faq.html" data-zh="常见问题">FAQ</a></li>
+            <li><a href="contact.html" data-zh="联络">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <a href="https://wa.me/60123528627">WhatsApp 012-352 8627</a>
+            </li>
+            <li><a href="tel:+60123528627" data-zh="拨打电话">Call us</a></li>
+          </ul>
+        </div>
+        <div class="muted">
+          36 &amp; 38, Jalan Pendekar 13,<br />
+          Taman Ungku Tun Aminah,<br />
+          81300 Johor Bahru, Johor
+        </div>
+      </div>
+      <p
+        class="tiny note"
+        data-zh="资料整理自商家公开资讯，最新营业时间与服务项目请以 WhatsApp 或电话确认为准。"
+      >
+        Compiled from the clinic's publicly available information. Please
+        confirm current opening hours and treatments by WhatsApp or phone.
+      </p>
+    </footer>
+
+    <div class="dock">
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/60123528627"
+        data-zh="WhatsApp 预约"
+        >Book on WhatsApp</a
+      >
+    </div>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Dentist",
+        "name": "Sunwag Dental Surgery 康维牙科",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "36 & 38, Jalan Pendekar 13, Taman Ungku Tun Aminah",
+          "addressLocality": "Johor Bahru",
+          "addressRegion": "Johor",
+          "postalCode": "81300",
+          "addressCountry": "MY"
+        },
+        "telephone": "+60123528627"
+      }
+    </script>
+    <script src="i18n.js"></script>
+    <script src="reveal.js"></script>
+    <script src="nav.js"></script>
+  </body>
+</html>

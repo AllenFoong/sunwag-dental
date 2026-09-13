@@ -1,0 +1,810 @@
+<!doctype html>
+<!--
+  Sunwag Dental Surgery — Services
+  ⚠️ Every treatment listed here was inferred from public reviews and social posts.
+     The clinic has NOT confirmed this list. Check it item by item before going live
+     and delete anything they do not offer. No prices (MDC advertising rules + no reliable source).
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title data-zh="服务项目 | Sunwag Dental Surgery 康维牙科">
+      Services | Sunwag Dental Surgery, Johor Bahru
+    </title>
+    <meta
+      name="description"
+      content="Treatments at Sunwag Dental Surgery, Taman Ungku Tun Aminah: check-ups and scaling, fillings, teeth whitening, implants, crowns, orthodontics and clear aligners."
+      data-zh-content="Sunwag Dental Surgery 康维牙科提供的牙科服务：例行检查与洗牙、蛀牙填补、牙齿美白、植牙、牙冠、牙齿矫正与隐形牙套。新山 Taman Ungku Tun Aminah。"
+    />
+    <meta property="og:title" content="Services | Sunwag Dental Surgery" />
+    <meta
+      property="og:description"
+      content="Cleanings, fillings, whitening, implants, braces and clear aligners. WhatsApp 012-352 8627."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+  </head>
+  <body>
+    <div class="wash" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <!-- 极光背景。参数全在 data-* 上，改数值不用碰 aurora.js。
+           说明见 aurora.js 顶部；调参对照 reactbits.dev/backgrounds/aurora。
+
+           配色跟首页的 Scanner 守同一套硬规矩：背景不许进强调色
+           （--blue #1b63bf）的色域，必须留在 --sky-* 那一族。
+
+           lightMode 里 chroma 会被峰值通道归一化，所以传饱和色会被拉到
+           全饱和。#BFD8F4 实测下来是 35%，跟首页 Scanner 的 36% 基本持平 ——
+           两页背景效果不同，但视觉重量一致。
+           三个色标沿 uv.x 横向排列；A-B-A 读起来是中间一条光带。 -->
+      <canvas
+        class="aurora"
+        data-color1="#D0D6DC"
+        data-color2="#628DBC"
+        data-color3="#D0D6DC"
+        data-amplitude="1"
+        data-blend="0.3"
+        data-speed="0.55"
+        data-opacity="1"
+      ></canvas>
+    </div>
+
+    <nav class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">Sunwag Dental</a>
+
+        <div class="nav-panel" id="nav-panel">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" data-zh="首页">Home</a>
+            </li>
+            <li>
+              <a href="services.html" aria-current="page" data-zh="服务"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a href="about.html" data-zh="关于">About</a>
+            </li>
+            <li>
+              <a href="faq.html" data-zh="常见问题">FAQ</a>
+            </li>
+          </ul>
+
+          <div class="nav-actions">
+            <div class="lang" role="group" aria-label="Language">
+              <button type="button" data-lang-btn="en" aria-pressed="true">
+                EN
+              </button>
+              <button type="button" data-lang-btn="zh" aria-pressed="false">
+                中文
+              </button>
+            </div>
+            <a class="btn btn-primary" href="contact.html" data-zh="联络我们"
+              >Contact us</a
+            >
+          </div>
+        </div>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-panel"
+          aria-label="Menu"
+          data-zh-aria-label="菜单"
+        >
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <header class="hero wrap">
+        <div class="hero-card is-centered" data-reveal>
+          <span class="eyebrow" data-zh="服务项目">Services</span>
+          <h1 data-zh="我们做什么">What we do</h1>
+          <p
+            class="lede"
+            data-zh="下面每一项都会先做检查、说明状况，再一起决定怎么处理。费用视实际情况而定，检查后会先告诉你，再开始治疗。"
+          >
+            Every treatment below starts the same way: an examination, an
+            explanation of what we found, then a decision made together. Cost
+            depends on the actual situation — we tell you before any treatment
+            begins.
+          </p>
+          <div class="btn-row">
+            <a
+              class="btn btn-primary"
+              href="https://wa.me/60123528627"
+              data-zh="WhatsApp 询问"
+              >Ask on WhatsApp</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- ── 服务列表：方案 B（2026-09-14，参考 T Dental 的服务页）──────
+           一项一行、图文左右交替。有照片的 6 项做大行，按「病人比较在意」
+           的顺序：植牙 → 矫正 → 隐形牙套 → 根管 → 美白 → 拔牙 → 补牙。
+           （2026-09-14：新增隐形牙套一行 #aligners，其后各行 is-flip 顺延。）
+           （2026-09-14：智齿拔除一行改为牙齿美白，锚点 #wisdom → #whitening。）
+           没有照片的 3 项（检查洗牙 / 牙痛 / 假牙牙冠）在下面并成小卡。
+           旧版（三分组 + 轮播 + 手风琴）备份在
+           archive/sunwag-services-3groups-2026-09-14.html。
+           锚点 id 全部沿用，首页的 link-more 不用改。
+
+           没抄 T Dental 的：微笑模特图、painless / trusted 等词。
+           （2026-09-14：Read More 详情页改为要做 —— 每行加了「Read more」链到 service-<slug>.html。）
+           ⚠ 分类小标题（修复 / 矫正 / 口腔外科 / 日常）沿用旧分组名，不是新增内容。 -->
+      <section class="wrap svc-rows">
+        <article class="svc-row svc-row--xv" id="implants">
+          <div class="svc-text" data-reveal>
+            <span class="eyebrow" data-zh="修复">Restorative</span>
+            <h3 data-zh="植牙">Implants</h3>
+            <p
+              class="muted"
+              data-zh="很多人以为植牙就是「种一颗牙进去」。实际上是三件分开的东西，分几次装上，中间要等骨头长稳。模型可以用鼠标拖着转。"
+            >
+              Most people picture an implant as one tooth being planted. It is
+              three separate pieces, fitted over more than one visit, with
+              healing time in between. Drag the model to look around it.
+            </p>
+            <ol class="xv-steps" id="xv-steps">
+              <li data-step="crown">
+                <span class="n">1</span>
+                <div>
+                  <h4 data-zh="牙冠 Crown">Crown</h4>
+                  <p
+                    data-zh="你看得到、用来咬东西的部分。形状和颜色照着旁边的牙做，最后一次才装上。"
+                  >
+                    The part you see and chew with. Shaped and shaded to match
+                    the teeth beside it, and fitted last.
+                  </p>
+                </div>
+              </li>
+              <li data-step="abutment">
+                <span class="n">2</span>
+                <div>
+                  <h4 data-zh="基台 Abutment">Abutment</h4>
+                  <p
+                    data-zh="中间的连接件，把牙冠锁在植体上。牙龈长好之后才装。"
+                  >
+                    The connector in the middle. It locks the crown onto the
+                    post, and goes in once the gum has healed.
+                  </p>
+                </div>
+              </li>
+              <li data-step="implant">
+                <span class="n">3</span>
+                <div>
+                  <h4 data-zh="植体 Implant Post">Implant Post</h4>
+                  <p
+                    data-zh="钛金属螺丝，替代牙根植入颚骨。需要几个月让骨头长上去、把它抓稳。"
+                  >
+                    A titanium screw that replaces the root in the jawbone. Bone
+                    needs a few months to grow onto it and hold it firm.
+                  </p>
+                </div>
+              </li>
+            </ol>
+
+            <div class="btn-row" style="margin-top: 1.75rem">
+              <a class="btn btn-primary" href="https://wa.me/60123528627">
+                <span data-zh="问问适不适合植牙"
+                  >Ask if an implant suits you</span
+                >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              </a>
+              <a class="btn btn-ghost" href="service-implants.html" data-zh="了解详情"
+                >Read more</a
+              >
+            </div>
+          </div>
+
+          <!-- stage ----------------------------------------------- -->
+          <div class="xv-stage" id="xv-stage" data-reveal style="--d: 120ms">
+            <iframe
+              id="xv-frame"
+              title="Interactive 3D exploded view of a dental implant"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
+            ></iframe>
+            <div class="xv-poster" id="xv-poster">
+              <svg
+                class="xv-spin"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.3"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" opacity=".25" />
+                <path d="M21 12a9 9 0 0 0-9-9" stroke-linecap="round" />
+              </svg>
+              <p data-zh="正在载入 3D 模型…">Loading the 3D model…</p>
+            </div>
+            <div class="xv-tags" aria-hidden="true">
+              <div class="xv-tag" data-tag="crown" style="top: 21%">
+                <b data-zh="牙冠">Crown</b><i></i>
+              </div>
+              <div class="xv-tag" data-tag="abutment" style="top: 48%">
+                <b data-zh="基台">Abutment</b><i></i>
+              </div>
+              <div class="xv-tag" data-tag="implant" style="top: 75%">
+                <b data-zh="植体">Implant Post</b><i></i>
+              </div>
+            </div>
+          </div>
+          <div class="xv-foot">
+            <!-- 免责声明与 Sketchfab 授权署名合并成一段。
+                   两者都必须跟着模型走：前者是合规，后者是模型许可要求。
+                   中文版也带链接 —— i18n.js 用的是 innerHTML，署名不会变成纯文字。 -->
+            <p
+              class="xv-note"
+              data-zh="此页 3D 模型仅用于说明植牙结构，不构成诊断或治疗建议。模型 <a href='https://sketchfab.com/3d-models/tooth-implant-dcfc91171cd34b6780a23a42effd29fc' rel='noopener'>「Tooth Implant」</a> 作者 <a href='https://sketchfab.com/Osmany.Areas' rel='noopener'>Osmany.Areas</a>，来自 Sketchfab。"
+            >
+              The 3D model on this page illustrates implant structure only. It
+              is not a diagnosis or a treatment recommendation. 3D model
+              <a
+                href="https://sketchfab.com/3d-models/tooth-implant-dcfc91171cd34b6780a23a42effd29fc"
+                rel="noopener"
+                >“Tooth Implant”</a
+              >
+              by
+              <a href="https://sketchfab.com/Osmany.Areas" rel="noopener"
+                >Osmany.Areas</a
+              >
+              on Sketchfab.
+            </p>
+          </div>
+        </article>
+
+        <article class="svc-row is-flip" id="braces">
+          <div class="svc-text" data-reveal>
+            <span class="eyebrow" data-zh="矫正">Orthodontics</span>
+            <h3 data-zh="牙齿矫正">Orthodontics</h3>
+            <p
+              class="muted"
+              data-zh="传统牙套与隐形牙套。先了解你想改善的部分，检查后说明可行的方案与大概需要的时间。"
+            >
+              Braces and clear aligners. We start from what you want to change,
+              then set out the workable options and roughly how long each takes.
+            </p>
+            <div class="svc-links">
+              <a class="link-more" href="service-braces.html" data-zh="了解详情"
+                >Read more</a
+              >
+              <a
+                class="link-more"
+                href="https://wa.me/60123528627"
+                data-zh="WhatsApp 询问"
+                >Ask on WhatsApp</a
+              >
+            </div>
+          </div>
+          <figure class="svc-media" data-reveal style="--d: 120ms">
+            <!-- React Bits <BorderGlow>，见 borderglow.js。
+                 用户原参数是暗色版（bg #120F17、奶油色光、紫粉蓝），
+                 放在浅色页上：黑边很突兀、光晕几乎看不见（用户 2026-09-14 反馈）。
+                 改成浅色版：白底 + 站内蓝；浅底上光要更浓才看得出，glowIntensity 1.0 → 2.2。 -->
+            <div
+              class="border-glow-card"
+              data-border-glow
+              data-edge-sensitivity="30"
+              data-glow-color="214 85 52"
+              data-bg="#ffffff"
+              data-radius="28"
+              data-glow-radius="40"
+              data-glow-intensity="2.2"
+              data-cone-spread="25"
+              data-animated="true"
+              data-colors="#1b63bf,#5aa2f0,#38bdf8"
+            >
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="border-glow-inner">
+                <img
+                  src="images/ortho2.jpg"
+                  alt="Fixed braces on an upper arch"
+                  data-zh-alt="上排牙齿上的固定牙套"
+                  width="612"
+                  height="612"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </figure>
+        </article>
+
+        <article class="svc-row" id="aligners">
+          <div class="svc-text" data-reveal>
+            <span class="eyebrow" data-zh="矫正">Orthodontics</span>
+            <h3 data-zh="隐形牙套（隐适美）">Clear aligners (Invisalign)</h3>
+            <p
+              class="muted"
+              data-zh="一副副透明、可自行取下的牙套，按阶段更换，让牙齿慢慢移动。每天要戴大约 20–22 小时才有效，所以会先检查你的情况适不适合用隐形牙套、也配不配合你的日常作息，再让你决定。"
+            >
+              Clear, removable trays swapped in stages to move teeth gradually.
+              They only work if worn around 20–22 hours a day, so we first check
+              whether your case suits aligners and whether they fit your
+              routine — then you decide.
+            </p>
+            <div class="svc-links">
+              <a class="link-more" href="service-aligners.html" data-zh="了解详情"
+                >Read more</a
+              >
+              <a
+                class="link-more"
+                href="https://wa.me/60123528627"
+                data-zh="WhatsApp 询问"
+                >Ask on WhatsApp</a
+              >
+            </div>
+          </div>
+          <figure class="svc-media" data-reveal style="--d: 120ms">
+            <!-- React Bits <BorderGlow>，见 borderglow.js。
+                 用户原参数是暗色版（bg #120F17、奶油色光、紫粉蓝），
+                 放在浅色页上：黑边很突兀、光晕几乎看不见（用户 2026-09-14 反馈）。
+                 改成浅色版：白底 + 站内蓝；浅底上光要更浓才看得出，glowIntensity 1.0 → 2.2。 -->
+            <div
+              class="border-glow-card"
+              data-border-glow
+              data-edge-sensitivity="30"
+              data-glow-color="214 85 52"
+              data-bg="#ffffff"
+              data-radius="28"
+              data-glow-radius="40"
+              data-glow-intensity="2.2"
+              data-cone-spread="25"
+              data-animated="true"
+              data-colors="#1b63bf,#5aa2f0,#38bdf8"
+            >
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="border-glow-inner">
+                <img
+                  src="images/aligner.jpg"
+                  alt="A clear aligner tray on a grey background"
+                  data-zh-alt="灰色背景上的一副透明隐形牙套"
+                  width="736"
+                  height="736"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </figure>
+        </article>
+
+        <article class="svc-row is-flip" id="rootcanal">
+          <div class="svc-text" data-reveal>
+            <span class="eyebrow" data-zh="口腔外科">Oral surgery</span>
+            <!-- ⚠ 这段文案是我写的：写流程、无疗效声称，但属临床描述，上线前必须拿给冯医生确认。 -->
+            <h3 data-zh="牙根根管治疗">Root canal treatment</h3>
+            <p
+              class="muted"
+              data-zh="牙髓发炎或坏死时的处理。清除受感染的牙髓、清洁根管后填封，目的是尽量把牙齿保留下来。会先拍片确认状况，再说明大概需要几次复诊。"
+            >
+              For a tooth whose nerve is inflamed or has died. The affected pulp
+              is removed, the canals cleaned and then sealed, so the tooth
+              itself can be kept. We X-ray first to confirm the situation, then
+              explain roughly how many visits it will take.
+            </p>
+            <div class="svc-links">
+              <a class="link-more" href="service-root-canal.html" data-zh="了解详情"
+                >Read more</a
+              >
+              <a
+                class="link-more"
+                href="https://wa.me/60123528627"
+                data-zh="WhatsApp 询问"
+                >Ask on WhatsApp</a
+              >
+            </div>
+          </div>
+          <figure class="svc-media" data-reveal style="--d: 120ms">
+            <!-- React Bits <BorderGlow>，见 borderglow.js。
+                 用户原参数是暗色版（bg #120F17、奶油色光、紫粉蓝），
+                 放在浅色页上：黑边很突兀、光晕几乎看不见（用户 2026-09-14 反馈）。
+                 改成浅色版：白底 + 站内蓝；浅底上光要更浓才看得出，glowIntensity 1.0 → 2.2。 -->
+            <div
+              class="border-glow-card"
+              data-border-glow
+              data-edge-sensitivity="30"
+              data-glow-color="214 85 52"
+              data-bg="#ffffff"
+              data-radius="28"
+              data-glow-radius="40"
+              data-glow-intensity="2.2"
+              data-cone-spread="25"
+              data-animated="true"
+              data-colors="#1b63bf,#5aa2f0,#38bdf8"
+            >
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="border-glow-inner">
+                <img
+                  src="images/rootcanal-photo.jpg"
+                  alt="A root canal file in a molar isolated behind a rubber dam"
+                  data-zh-alt="根管治疗中，臼齿以橡皮障隔离，根管锉进入根管"
+                  width="1155"
+                  height="1155"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </figure>
+        </article>
+
+        <article class="svc-row" id="whitening">
+          <div class="svc-text" data-reveal>
+            <span class="eyebrow" data-zh="美容牙科">Cosmetic</span>
+            <h3 data-zh="牙齿美白">Teeth whitening</h3>
+            <p
+              class="muted"
+              data-zh="美白只会让天然牙釉质变亮，补过的牙和牙冠颜色不会跟着变。所以会先检查牙齿和牙龈，再说明大概能亮到什么程度、效果通常能维持多久。"
+            >
+              Whitening only lightens natural enamel — fillings and crowns
+              stay the same shade. So we check your teeth and gums first, then
+              tell you how much lighter is realistic and how long it tends to
+              last.
+            </p>
+            <div class="svc-links">
+              <a class="link-more" href="service-whitening.html" data-zh="了解详情"
+                >Read more</a
+              >
+              <a
+                class="link-more"
+                href="https://wa.me/60123528627"
+                data-zh="WhatsApp 询问"
+                >Ask on WhatsApp</a
+              >
+            </div>
+          </div>
+          <figure class="svc-media" data-reveal style="--d: 120ms">
+            <!-- React Bits <BorderGlow>，见 borderglow.js。
+                 用户原参数是暗色版（bg #120F17、奶油色光、紫粉蓝），
+                 放在浅色页上：黑边很突兀、光晕几乎看不见（用户 2026-09-14 反馈）。
+                 改成浅色版：白底 + 站内蓝；浅底上光要更浓才看得出，glowIntensity 1.0 → 2.2。 -->
+            <div
+              class="border-glow-card"
+              data-border-glow
+              data-edge-sensitivity="30"
+              data-glow-color="214 85 52"
+              data-bg="#ffffff"
+              data-radius="28"
+              data-glow-radius="40"
+              data-glow-intensity="2.2"
+              data-cone-spread="25"
+              data-animated="true"
+              data-colors="#1b63bf,#5aa2f0,#38bdf8"
+            >
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="border-glow-inner">
+                <img
+                  src="images/whitening-photo.jpg"
+                  alt="A blue whitening light shining on teeth held apart by a cheek retractor, patient in orange protective glasses"
+                  data-zh-alt="牙齿美白：开口器撑开嘴唇，蓝光灯照射牙齿，患者戴橙色护目镜"
+                  width="1100"
+                  height="1100"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </figure>
+        </article>
+
+        <article class="svc-row is-flip" id="extraction">
+          <div class="svc-text" data-reveal>
+            <span class="eyebrow" data-zh="口腔外科">Oral surgery</span>
+            <h3 data-zh="拔牙">Extractions</h3>
+            <p
+              class="muted"
+              data-zh="当牙齿已经无法保留时的处理。拔之前会先确认是否真的需要拔，还是有别的选择。"
+            >
+              For a tooth that can no longer be saved. Before anything is
+              removed we confirm whether it really needs to come out, or whether
+              there is another route.
+            </p>
+            <div class="svc-links">
+              <a class="link-more" href="service-extraction.html" data-zh="了解详情"
+                >Read more</a
+              >
+              <a
+                class="link-more"
+                href="https://wa.me/60123528627"
+                data-zh="WhatsApp 询问"
+                >Ask on WhatsApp</a
+              >
+            </div>
+          </div>
+          <figure class="svc-media" data-reveal style="--d: 120ms">
+            <!-- React Bits <BorderGlow>，见 borderglow.js。
+                 用户原参数是暗色版（bg #120F17、奶油色光、紫粉蓝），
+                 放在浅色页上：黑边很突兀、光晕几乎看不见（用户 2026-09-14 反馈）。
+                 改成浅色版：白底 + 站内蓝；浅底上光要更浓才看得出，glowIntensity 1.0 → 2.2。 -->
+            <div
+              class="border-glow-card"
+              data-border-glow
+              data-edge-sensitivity="30"
+              data-glow-color="214 85 52"
+              data-bg="#ffffff"
+              data-radius="28"
+              data-glow-radius="40"
+              data-glow-intensity="2.2"
+              data-cone-spread="25"
+              data-animated="true"
+              data-colors="#1b63bf,#5aa2f0,#38bdf8"
+            >
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="border-glow-inner">
+                <img
+                  src="images/extraction-photo.jpg"
+                  alt="A dentist holding extraction forceps beside a patient's open mouth"
+                  data-zh-alt="牙医在患者口腔旁持拔牙钳准备拔牙"
+                  width="1100"
+                  height="1100"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </figure>
+        </article>
+
+        <article class="svc-row" id="fillings">
+          <div class="svc-text" data-reveal>
+            <span class="eyebrow" data-zh="日常牙科">Everyday dentistry</span>
+            <h3 data-zh="蛀牙填补">Fillings</h3>
+            <p
+              class="muted"
+              data-zh="清除蛀蚀部分后填补。会先告诉你蛀到什么程度、可以选哪种材料，以及各自的差别。"
+            >
+              Clearing the decay and filling the tooth. We first tell you how
+              far it has gone, which materials are available and how they
+              differ.
+            </p>
+            <div class="svc-links">
+              <a class="link-more" href="service-fillings.html" data-zh="了解详情"
+                >Read more</a
+              >
+              <a
+                class="link-more"
+                href="https://wa.me/60123528627"
+                data-zh="WhatsApp 询问"
+                >Ask on WhatsApp</a
+              >
+            </div>
+          </div>
+          <figure class="svc-media" data-reveal style="--d: 120ms">
+            <!-- React Bits <BorderGlow>，见 borderglow.js。
+                 用户原参数是暗色版（bg #120F17、奶油色光、紫粉蓝），
+                 放在浅色页上：黑边很突兀、光晕几乎看不见（用户 2026-09-14 反馈）。
+                 改成浅色版：白底 + 站内蓝；浅底上光要更浓才看得出，glowIntensity 1.0 → 2.2。 -->
+            <div
+              class="border-glow-card"
+              data-border-glow
+              data-edge-sensitivity="30"
+              data-glow-color="214 85 52"
+              data-bg="#ffffff"
+              data-radius="28"
+              data-glow-radius="40"
+              data-glow-intensity="2.2"
+              data-cone-spread="25"
+              data-animated="true"
+              data-colors="#1b63bf,#5aa2f0,#38bdf8"
+            >
+              <span class="edge-light" aria-hidden="true"></span>
+              <div class="border-glow-inner">
+                <img
+                  src="images/filling.jpg"
+                  alt="A tooth being restored with a composite filling"
+                  data-zh-alt="正在用树脂材料修补的牙齿"
+                  width="1024"
+                  height="1024"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+          </figure>
+        </article>
+      </section>
+
+      <section class="wrap is-tight-below">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="日常与其他">Everyday and other care</h2>
+          <p class="muted" data-zh="大部分人来诊所处理的，都是这一类。">
+            This is what most people come in for.
+          </p>
+        </div>
+        <div class="grid svc-mini">
+          <article class="card" id="checkup" data-reveal>
+            <h3 data-zh="例行检查与洗牙">Check-up &amp; scaling</h3>
+            <p
+              class="muted"
+              data-zh="清除牙结石与牙渍，同时检查有没有正在形成的问题。建议每半年一次 —— 早发现的蛀牙，处理起来比拖到牙痛简单得多。"
+            >
+              Removing tartar and stains, and checking for anything starting to
+              go wrong. Every six months is a good rhythm — a cavity caught
+              early is far simpler than one that has become a toothache.
+            </p>
+          </article>
+          <article class="card" id="urgent" data-reveal style="--d: 80ms">
+            <h3 data-zh="牙痛与紧急处理">Toothache &amp; urgent visits</h3>
+            <p
+              class="muted"
+              data-zh="突然牙痛、崩牙、补的东西掉了 —— 先 WhatsApp 说明情况，我们看当天能不能安排时间。"
+            >
+              Sudden pain, a chipped tooth, a filling that came out — message us
+              with the details and we will see whether we can fit you in the
+              same day.
+            </p>
+          </article>
+          <article class="card" id="dentures" data-reveal style="--d: 160ms">
+            <h3 data-zh="假牙与牙冠">Dentures and Crowns</h3>
+            <p
+              class="muted"
+              data-zh="牙齿缺损或缺牙的修复。会依照你的情况说明有哪些做法，以及各自的差别。"
+            >
+              For damaged or missing teeth. We explain which approaches apply to
+              your situation and how they differ.
+            </p>
+          </article>
+        </div>
+      </section>
+      <!-- 图片手风琴（React Bits <AccordionGallery> 原生版，见 accordion.js）。
+           2026-09-14 从旧版 services 搬回，替换掉原来缺图的「不确定需要哪一项」区块。 -->
+      <section class="wrap is-tight-above is-tight-below">
+        <div class="section-head" data-reveal>
+          <h2 data-zh="看看我们做的治疗">A closer look at our treatments</h2>
+          <p
+            class="muted"
+            data-zh="补牙、拔牙、植牙、矫正 —— 点照片看这项治疗的说明。"
+          >
+            Fillings, extractions, implants and braces — tap a photo to read
+            about that treatment.
+          </p>
+        </div>
+        <div
+          class="acc"
+          data-accordion
+          data-default="2"
+          data-expand="0.52"
+          data-trigger="hover"
+          data-reveal
+        >
+          <a class="acc-item" href="service-fillings.html">
+            <img
+              src="images/filling.jpg"
+              alt="A tooth filling being placed"
+              data-zh-alt="正在补牙"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="acc-v" aria-hidden="true" data-zh="补牙"
+              >Fillings</span
+            >
+            <span class="acc-h" data-zh="补牙">Fillings</span>
+          </a>
+          <a class="acc-item" href="service-extraction.html">
+            <img
+              src="images/extraction.jpg"
+              alt="Dentist preparing for a tooth extraction"
+              data-zh-alt="准备拔牙"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="acc-v" aria-hidden="true" data-zh="拔牙"
+              >Extraction</span
+            >
+            <span class="acc-h" data-zh="拔牙">Extraction</span>
+          </a>
+          <a class="acc-item" href="service-implants.html">
+            <img
+              src="images/implant.jpg"
+              alt="A dental implant model"
+              data-zh-alt="植牙模型"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="acc-v" aria-hidden="true" data-zh="植牙"
+              >Implants</span
+            >
+            <span class="acc-h" data-zh="植牙">Implants</span>
+          </a>
+          <a class="acc-item" href="service-braces.html">
+            <img
+              src="images/ortho2.jpg"
+              alt="Fixed braces on an upper arch"
+              data-zh-alt="上排牙齿上的固定牙套"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="acc-v" aria-hidden="true" data-zh="矫正"
+              >Orthodontics</span
+            >
+            <span class="acc-h" data-zh="牙齿矫正">Orthodontics</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="wrap">
+      <div class="cols">
+        <div>
+          <strong>Sunwag Dental Surgery</strong><br />
+          <span class="muted">康维牙科（双威）</span>
+        </div>
+        <div>
+          <ul>
+            <li><a href="index.html" data-zh="首页">Home</a></li>
+            <li><a href="services.html" data-zh="服务">Services</a></li>
+            <li><a href="about.html" data-zh="关于">About</a></li>
+            <li><a href="faq.html" data-zh="常见问题">FAQ</a></li>
+            <li><a href="contact.html" data-zh="联络">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <ul>
+            <li>
+              <a href="https://wa.me/60123528627">WhatsApp 012-352 8627</a>
+            </li>
+            <li><a href="tel:+60123528627" data-zh="拨打电话">Call us</a></li>
+          </ul>
+        </div>
+        <div class="muted">
+          36 &amp; 38, Jalan Pendekar 13,<br />
+          Taman Ungku Tun Aminah,<br />
+          81300 Johor Bahru, Johor
+        </div>
+      </div>
+      <p
+        class="tiny note"
+        data-zh="资料整理自商家公开资讯，最新营业时间与服务项目请以 WhatsApp 或电话确认为准。本页内容仅供参考，不构成诊断或治疗建议。"
+      >
+        Compiled from the clinic's publicly available information. Please
+        confirm current opening hours and treatments by WhatsApp or phone. This
+        page is general information only and is not a diagnosis or treatment
+        advice.
+      </p>
+    </footer>
+
+    <div class="dock">
+      <a
+        class="btn btn-primary"
+        href="https://wa.me/60123528627"
+        data-zh="WhatsApp 预约"
+        >Book on WhatsApp</a
+      >
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="reveal.js"></script>
+    <script src="nav.js"></script>
+    <script src="aurora.js"></script>
+    <script src="borderglow.js"></script>
+    <script src="accordion.js"></script>
+    <script src="implant.js" defer></script>
+  </body>
+</html>

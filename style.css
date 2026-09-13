@@ -1,0 +1,2330 @@
+/* ============================================================
+   Sunwag Dental Surgery — high-end visual design pass
+   Direction : Soft Structuralism, light-blue led
+   Rules from: taste-skill / high-end-visual-design (soft-skill)
+     · double-bezel depth instead of 1px grey borders
+     · no harsh dark drop shadows — diffused ambient only
+     · squircle radii, generous section rhythm
+     · custom easing, transform / opacity / filter only
+     · backdrop-blur restricted to fixed & sticky layers
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* light blue is the ground, not an accent */
+  --sky-00: #f7fafe;
+  --sky-05: #eff5fd;
+  --sky-10: #e3edfb;
+  --sky-20: #cfe1f8;
+  --sky-30: #b3d0f2;
+
+  --ink: #0a1826;
+  --ink-soft: #46596f;
+  --ink-faint: #7b8ca1;
+
+  --blue: #1b63bf;
+  --blue-deep: #14508f;
+  --blue-lift: #2b7ae0;
+
+  /* depth tokens — never a solid grey border */
+  --ring: rgba(14, 44, 84, 0.06);
+  --bezel: rgba(207, 225, 248, 0.6);
+  --gloss: rgba(255, 255, 255, 0.9);
+  --ambient: 0 28px 56px -28px rgba(14, 44, 84, 0.22);
+  --ambient-lg: 0 44px 88px -36px rgba(14, 44, 84, 0.26);
+
+  --r-core: 26px;
+  --r-lg: 34px;
+  --r-pill: 999px;
+  --r-nav: 20px; /* 导航条外壳：方一点，跟里面的胶囊按钮拉开层次 */
+
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+
+  --pad: clamp(1.15rem, 4vw, 2.75rem);
+  --gap: clamp(0.9rem, 2.2vw, 1.5rem);
+  --maxw: 1180px;
+
+  --sans:
+    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC",
+    system-ui, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.68;
+  color: var(--ink);
+  background: var(--sky-00);
+  overflow-x: hidden;
+}
+
+/* ---- ambient light-blue field (fixed, so blur never sits on scrolling content) ---- */
+.wash {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+.wash span {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+}
+.wash span:nth-child(1) {
+  width: 62vw;
+  height: 62vw;
+  top: -22vw;
+  left: -14vw;
+  opacity: 0.75;
+  background: radial-gradient(circle at 40% 40%, #cfe3fb, transparent 70%);
+}
+.wash span:nth-child(2) {
+  width: 50vw;
+  height: 50vw;
+  top: 30vh;
+  right: -18vw;
+  opacity: 0.6;
+  background: radial-gradient(circle at 50% 50%, #dcecfc, transparent 70%);
+}
+.wash span:nth-child(3) {
+  width: 56vw;
+  height: 56vw;
+  bottom: -26vw;
+  left: 22vw;
+  opacity: 0.55;
+  background: radial-gradient(circle at 50% 50%, #e7f0fb, transparent 70%);
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+/* ============================================================
+   Double-bezel surface — one element, two concentric rings
+   ============================================================ */
+.panel,
+.glass,
+.card,
+.hero-card {
+  position: relative;
+  background: #fff;
+  border-radius: var(--r-core);
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 0 0 7px var(--bezel),
+    var(--ambient);
+}
+.panel-lg {
+  border-radius: var(--r-lg);
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 0 0 9px var(--bezel),
+    var(--ambient-lg);
+}
+
+/* ============================================================
+   Navigation — floating, never glued to the top edge
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: clamp(0.6rem, 1.6vw, 1.25rem);
+  z-index: 80;
+  padding: 0 var(--pad);
+  margin-top: clamp(0.6rem, 1.6vw, 1.25rem);
+}
+.nav-inner {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--r-nav);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 18px 40px -24px rgba(14, 44, 84, 0.3);
+}
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .nav-inner {
+    background: rgba(255, 255, 255, 0.94);
+  }
+}
+.brand {
+  flex: 1 1 0;
+  min-width: 0;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-size: 1.05rem;
+  color: var(--ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav-links {
+  display: flex;
+  gap: 0.1rem;
+  list-style: none;
+  margin: 0;
+  margin-inline: auto;
+  padding: 0;
+}
+
+/* 右段：语言切换 + Contact us。与 .brand 同为 flex:1 1 0，两边等宽，
+   中间的 .nav-links 才是真居中 —— 模板用 xl:w-[35%] 做的是同一件事。 */
+.nav-actions {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+.nav-actions .btn {
+  min-height: 40px;
+  /* 以英文 Contact us 的宽度为准（实测 108.56px），中文「联络我们」只有 90.63px，
+     不锁定的话切语言时胶囊会突然缩一截。用 rem 而不是 px，跟着字号缩放。 */
+  min-width: 6.8rem;
+  padding-inline: 1.05rem;
+  font-size: 0.9rem;
+}
+.nav-links a {
+  display: block;
+  padding: 0.5rem 0.85rem;
+  border-radius: var(--r-pill);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    color 0.4s var(--ease),
+    background 0.4s var(--ease);
+}
+.nav-links a:hover {
+  color: var(--ink);
+  background: rgba(227, 237, 251, 0.8);
+}
+.nav-links a[aria-current="page"] {
+  color: var(--blue-deep);
+  background: var(--sky-10);
+  font-weight: 650;
+}
+/* ---- EN / 中文 switch ---- */
+.lang {
+  display: flex;
+  gap: 2px;
+  flex: none;
+  padding: 3px;
+  border-radius: var(--r-pill);
+  background: var(--sky-05);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+.lang button {
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  padding: 0.34rem 0.62rem;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--ink-faint);
+  cursor: pointer;
+  transition:
+    color 0.4s var(--ease),
+    background 0.4s var(--ease),
+    box-shadow 0.4s var(--ease);
+}
+.lang button:hover {
+  color: var(--ink-soft);
+}
+.lang button[aria-pressed="true"] {
+  background: #fff;
+  color: var(--blue-deep);
+  box-shadow:
+    0 0 0 1px var(--ring),
+    0 2px 6px -2px rgba(14, 44, 84, 0.28);
+}
+.lang button:focus-visible {
+  outline: 2.5px solid var(--blue);
+  outline-offset: 2px;
+}
+
+/* ---- 汉堡按钮 + 抽屉 ----
+   渐进增强：.nav-panel 默认 display:contents，链接和右段直接参与 .nav-inner 的
+   三段式 flex。只有「窄屏 且 有 JS」时才收成抽屉。JS 挂了就退回换行排列，
+   导航不会锁死。html.js 这个钩子每个页面的 <head> 里已经加了。 */
+.nav-panel {
+  display: contents;
+}
+.nav-toggle {
+  display: none;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--sky-05);
+  box-shadow: inset 0 0 0 1px var(--ring);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s var(--ease);
+}
+.nav-toggle:hover {
+  background: var(--sky-10);
+}
+.nav-toggle span {
+  position: relative;
+  display: block;
+  width: 17px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: background 0.3s var(--ease);
+}
+.nav-toggle span::before,
+.nav-toggle span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--ink);
+  transition: transform 0.45s var(--ease);
+}
+.nav-toggle span::before {
+  transform: translateY(-5.5px);
+}
+.nav-toggle span::after {
+  transform: translateY(5.5px);
+}
+.nav-toggle[aria-expanded="true"] span {
+  background: transparent;
+}
+.nav-toggle[aria-expanded="true"] span::before {
+  transform: rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span::after {
+  transform: rotate(-45deg);
+}
+.nav-toggle:focus-visible {
+  outline: 2.5px solid var(--blue);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .nav-inner {
+    position: relative;
+    padding: 0.6rem 0.7rem;
+  }
+
+  /* 有 JS：收成抽屉 */
+  html.js .nav-toggle {
+    display: inline-flex;
+  }
+  html.js .nav-panel {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.55rem);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.75rem;
+    border-radius: var(--r-nav);
+    /* 抽屉必须不透明：它盖在正文标题上，半透明会把底下的字透出来 */
+    background: #fff;
+    box-shadow:
+      inset 0 1px 0 var(--gloss),
+      0 0 0 1px var(--ring),
+      0 18px 40px -24px rgba(14, 44, 84, 0.3);
+  }
+  html.js .nav-panel.is-open {
+    display: flex;
+  }
+  html.js .nav-panel .nav-links {
+    flex-direction: column;
+    margin-inline: 0;
+    gap: 0.1rem;
+  }
+  html.js .nav-panel .nav-links a {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.95rem;
+  }
+  html.js .nav-panel .nav-actions {
+    flex: none;
+    justify-content: space-between;
+    gap: 0.6rem;
+    margin-top: 0.35rem;
+    padding-top: 0.7rem;
+    box-shadow: inset 0 1px 0 var(--sky-20);
+  }
+
+  /* 没有 JS：退回换行排列，跟改版前一样 */
+  html:not(.js) .nav-inner {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+  }
+  html:not(.js) .brand {
+    flex: 1 1 auto;
+  }
+  html:not(.js) .nav-actions {
+    flex: none;
+  }
+  html:not(.js) .nav-links {
+    flex: 1 1 100%;
+    order: 2;
+    margin-inline: 0;
+    justify-content: space-between;
+    gap: 0;
+  }
+  html:not(.js) .nav-links a {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.88rem;
+  }
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+h1,
+h2,
+h3 {
+  letter-spacing: -0.035em;
+  line-height: 1.08;
+  margin: 0 0 0.7rem;
+  font-weight: 700;
+}
+h1 {
+  font-size: clamp(2.15rem, 1.45rem + 2.7vw, 3.6rem);
+}
+h2 {
+  font-size: clamp(1.7rem, 1.2rem + 2.1vw, 2.9rem);
+}
+h3 {
+  font-size: clamp(1.12rem, 1.02rem + 0.5vw, 1.34rem);
+  letter-spacing: -0.02em;
+}
+p {
+  margin: 0 0 1rem;
+}
+.lede {
+  font-size: clamp(1.05rem, 0.98rem + 0.5vw, 1.28rem);
+  color: var(--ink-soft);
+  max-width: 54ch;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.74rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  background: var(--sky-10);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--r-pill);
+  margin-bottom: 1.25rem;
+  box-shadow: inset 0 0 0 1px rgba(27, 99, 191, 0.08);
+}
+.muted {
+  color: var(--ink-soft);
+}
+.tiny {
+  font-size: 0.82rem;
+  color: var(--ink-faint);
+}
+.accent {
+  color: var(--blue);
+}
+
+/* 章节竖向留白。这是全局的 —— 改它会动整站每一个 <section>。
+   收紧过两轮：
+     2026-09-06  clamp(4.5rem, 9vw, 9rem)  → clamp(3rem, 6vw, 6rem)
+     2026-09-07  clamp(3rem, 6vw, 6rem)    → clamp(2rem, 4vw, 4rem)
+   1280 宽下：115px → 77px → 51px。 */
+section {
+  padding-block: clamp(2rem, 4vw, 4rem);
+}
+/* 单独收紧某个 section 的竖向留白，不动上面那条全局规则。
+   两个相邻 section 边界完全贴合（margin 都是 0），所以它们之间的
+   间距 = 上方的 padding-bottom + 下方的 padding-top。只加一边只能收一半。
+
+   四个页的 CTA 都用同一套（index / about / faq / services）：
+     CTA 前一个 section → is-tight-below
+     CTA section       → is-tight-above + is-tight-below
+   两边都给 CTA 加，是为了同时满足两件事：间距收到 51px，
+   且 CTA 自己上下对称（只加上边的话是 25.6 / 51.2，卡片会贴着上边）。
+   副作用：CTA 是最后一个 section，所以它到 <footer> 的距离也跟着收了。 */
+.is-tight-above {
+  padding-top: clamp(1.5rem, 2vw, 2rem);
+}
+.is-tight-below {
+  padding-bottom: clamp(1.5rem, 2vw, 2rem);
+}
+
+.section-head {
+  max-width: 58ch;
+  margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 54px;
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--r-pill);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  border: 0;
+  transition:
+    transform 0.5s var(--ease),
+    box-shadow 0.5s var(--ease),
+    background 0.5s var(--ease);
+}
+.btn svg {
+  width: 19px;
+  height: 19px;
+  flex: none;
+  transition: transform 0.5s var(--ease);
+}
+.btn:hover {
+  transform: scale(0.985);
+}
+.btn:hover svg {
+  transform: translateX(3px) scale(1.06);
+}
+.btn-primary {
+  background: linear-gradient(180deg, var(--blue-lift), var(--blue));
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 0 0 1px rgba(20, 80, 143, 0.25),
+    0 18px 36px -18px rgba(27, 99, 191, 0.6);
+}
+.btn-ghost {
+  background: #fff;
+  color: var(--ink);
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 12px 28px -18px rgba(14, 44, 84, 0.35);
+}
+.btn-ghost:hover {
+  background: var(--sky-05);
+}
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.75rem;
+}
+
+/* 内页 hero 居中变体。
+   卡片外壳还是满宽（双层描边的节奏不变），只把里面的内容收窄并居中。
+   about.html / faq.html 的 hero 结构跟这里一模一样，要对齐就把
+   is-centered 加上去，不用再写 CSS。 */
+.hero-card.is-centered {
+  text-align: center;
+}
+.hero-card.is-centered > * {
+  margin-inline: auto;
+}
+.hero-card.is-centered h1 {
+  max-width: 18ch;
+}
+.hero-card.is-centered .lede {
+  max-width: 52ch;
+}
+.hero-card.is-centered .btn-row {
+  justify-content: center;
+}
+
+/* ============================================================
+   Editorial split hero
+   ============================================================ */
+.hero {
+  padding-block: clamp(2.5rem, 6vw, 6rem) clamp(3rem, 7vw, 7rem);
+}
+.split {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 940px) {
+  .split {
+    grid-template-columns: 1.08fr 0.92fr;
+  }
+}
+.hero-card,
+.split .panel {
+  padding: clamp(1.6rem, 3.5vw, 3rem);
+}
+
+/* ---- media slot: holds its shape with no image present ---- */
+.shot {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  aspect-ratio: 4/5;
+  background:
+    radial-gradient(120% 90% at 20% 10%, #ffffff 0%, transparent 60%),
+    linear-gradient(150deg, var(--sky-10) 0%, var(--sky-20) 55%, #dfe9f6 100%);
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 0 0 9px var(--bezel),
+    var(--ambient-lg);
+}
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.shot--wide {
+  aspect-ratio: 16/10;
+}
+
+/* ============================================================
+   粘性堆叠卡片 —— 借自 Paymark 的 feature 区
+   每张卡 position: sticky，后一张滚上来盖住前一张。
+   纯 CSS：没有 JS、没有 scroll 监听、没有 IntersectionObserver。
+   能盖住的前提是卡片底色不透明——.card 本来就是 #fff。
+   ============================================================ */
+.stack {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 3.75rem);
+}
+@media (min-width: 720px) {
+  .stack-item {
+    position: sticky;
+    /* 跟 .faq-aside 用同一个偏移，才不会被悬浮导航条遮住 */
+    top: clamp(5.5rem, 7vw, 7.25rem);
+  }
+}
+
+.card-row {
+  display: grid;
+  gap: clamp(1.35rem, 3.5vw, 3.25rem);
+  /* start 而不是 center：居中会让段落长的卡把 h3 顶上去、短的让它掉下来，
+     四张卡滚过去时标题会上下跳（实测过 145/175/144/175）。 */
+  align-items: start;
+  padding: clamp(1.35rem, 3vw, 2.5rem);
+}
+@media (min-width: 720px) {
+  .card-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+  }
+  /* 文字栏的上方偏移。全部靠顶会显得头重脚轻，这个偏移把 h3
+     拉到卡高约 1/4 处 —— 跟 CloudMile about_welfare 那个位置一致。
+     四张卡都是同一个值，所以 h3 位置完全对齐，不受段落长短影响。
+     窄屏是单栏（图上字下），不需要这个偏移，所以只写在这个断点里。 */
+  .card-row > :last-child {
+    padding-top: clamp(1.5rem, 5vw, 4rem);
+  }
+  /* 窄屏图在上、字在下（DOM 顺序）；宽屏换成左字右图 */
+  .card-art {
+    order: 2;
+  }
+}
+/* 堆叠时卡片会互相覆盖，再做 hover 浮起只会抵触 */
+.card-row:hover {
+  transform: none;
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 0 0 7px var(--bezel),
+    var(--ambient);
+}
+.card-row h3 {
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.6rem;
+}
+.card-row p {
+  max-width: 46ch;
+}
+
+/* 图位：没有服务实拍，所以把卡片原本那个线性图标放大放进来。
+   比空框诚实，也比随便找张 stock photo 强。 */
+.card-art {
+  /* 原本是 494/496（正方形）。正方形图配两行字，卡里必然留下
+     一大块空白（实测图 386px、文字 ~150px）。改成 4/3 把卡高压下来，
+     源图是方的，object-fit: cover 会自己裁。 */
+  aspect-ratio: 4 / 3;
+  /* 必须写。.card-art 是 grid item，默认 min-height: auto 会拿里面 <img>
+     的 1:1 固有尺寸当下限，把 aspect-ratio 直接顶掉（实测 384×384）。 */
+  min-height: 0;
+  display: grid;
+  /* 隐式行默认是 auto，会被里面 <img> 的 1:1 固有高度撑到 384，
+     于是 img 的 height:100% 也跟着算成 384，直接溢出卡片 64px。
+     minmax(0, 1fr) 强制行填满容器（288），overflow 做二道保险。 */
+  grid-template-rows: minmax(0, 1fr);
+  overflow: hidden;
+  place-items: center;
+  border-radius: var(--r-core);
+  background:
+    radial-gradient(120% 90% at 22% 12%, #ffffff 0%, transparent 62%),
+    linear-gradient(
+      150deg,
+      var(--sky-05) 0%,
+      var(--sky-10) 55%,
+      var(--sky-20) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring);
+}
+.card-art svg {
+  width: 44%;
+  height: auto;
+  color: var(--blue-lift);
+}
+.card-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  display: block;
+}
+
+/* 正文里的箭头链接（模板的 Learn More 位置） */
+.link-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 1.15rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: var(--blue-deep);
+  text-decoration: none;
+}
+.link-more::after {
+  content: "\2192";
+  transition: transform 0.45s var(--ease);
+}
+.link-more:hover::after {
+  transform: translateX(4px);
+}
+
+.card {
+  padding: clamp(1.35rem, 2.6vw, 2rem);
+  transition:
+    transform 0.6s var(--ease),
+    box-shadow 0.6s var(--ease);
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 0 0 7px var(--sky-20),
+    var(--ambient-lg);
+}
+.card h3 {
+  margin-bottom: 0.4rem;
+}
+.card p:last-child {
+  margin-bottom: 0;
+}
+.ico {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.1rem;
+  border-radius: 14px;
+  color: var(--blue-deep);
+  background: linear-gradient(180deg, #fff, var(--sky-05));
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring);
+}
+.ico svg {
+  width: 21px;
+  height: 21px;
+}
+.card-num {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 1rem;
+  border-radius: 13px;
+  background: var(--sky-10);
+  color: var(--blue-deep);
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: -0.02em;
+}
+.grid {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 268px), 1fr));
+}
+
+/* 大小不等的卡片节奏——借自 Paymark 的 feature 格子。
+   只借排版，没借它那些产品 UI 插图：牙科的示意图全是「一颗牙加点变化」，
+   八张摆一起反而更分不出差别（原型验证过，见 02-设计借鉴笔记.md）。
+   层级改由字号、留白和格子大小建立。
+
+   :nth-last-child(n+3) 是关键：只有三项以上时首卡才占满一行。
+   两项的那一组（口腔外科）并排，不会出现一张半宽卡孤零零挂在那里。 */
+.grid-rhythm {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 760px) {
+  .grid-rhythm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .grid-rhythm > :first-child:nth-last-child(n + 3) {
+    grid-column: 1 / -1;
+  }
+}
+.grid-rhythm > .card {
+  padding: clamp(1.35rem, 3vw, 2.25rem);
+  /* 首页卡片的 link-more 会链到 services.html#<id>。导航条是悬浮的，
+     不给偏移的话锚点会落到它下面（实测卡顶在视口上方 56px）。
+     跟 .faq-aside / .stack-item 用同一个偏移值。 */
+  scroll-margin-top: clamp(7rem, 9vw, 9rem);
+}
+.grid-rhythm > :first-child:nth-last-child(n + 3) {
+  padding: clamp(1.75rem, 4vw, 3rem);
+}
+.grid-rhythm > :first-child:nth-last-child(n + 3) h3 {
+  font-size: clamp(1.6rem, 1.3rem + 1.4vw, 2.4rem);
+  letter-spacing: -0.03em;
+}
+/* 必须是直接子选择器。写成后代选择器（… p）会把首卡里
+   每一个 <p> 都罩住 —— #implants 正好是这个首卡，结果它的 lede、
+   授权行、免责声明、三个步骤正文全被 54ch 封顶，免责声明那条
+   分隔线也只画到 727px。
+
+   :not(.xv-intro) 是因为植牙卡的 lede 也是直接子 <p>，会被这条
+   抢走 —— 它的特异性 (0,3,1) 压过 .lede 和 .xv-intro，连 font-size
+   一起覆盖。那张卡的引言要跟下方两栏同宽，不走 54ch。 */
+.grid-rhythm > :first-child:nth-last-child(n + 3) > p:not(.xv-intro) {
+  font-size: clamp(1rem, 0.96rem + 0.3vw, 1.15rem);
+  max-width: 54ch;
+}
+.grid-rhythm h3 {
+  font-size: 1.25rem;
+  letter-spacing: -0.025em;
+}
+
+/* 自动播放的左文右图大卡 —— 借自 Paymark 的 timeline 卡。
+   行为写在 carousel.js 里。模板原文：
+     外壳  bg-card rounded-[40px] border p-6 md:p-12 overflow-hidden
+     内层  grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center
+     左栏  flex flex-col h-full justify-between
+     圆点  h-2 rounded-full transition-all duration-500（w-8 当前 / w-2 其余）
+     图位  aspect-[4/3] md:aspect-[16/10] lg:aspect-square rounded-[32px]
+
+   两处改了，理由写清楚以免以后又被改回去：
+   1. 遮罩从 from-black/40 降到 18% 墨色 —— 模板是深色主题、图压在黑底上；
+      白底站上 40% 黑只会把照片抹脏。
+   2. 圆点的 bg-white/20 换成 sky 色系 —— 同理。
+   ============================================================ */
+.case {
+  padding: clamp(1.25rem, 3.5vw, 3rem);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.case:hover {
+  transform: none;
+}
+.case-inner {
+  display: grid;
+  gap: clamp(1.35rem, 3vw, 3rem);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .case-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+/* 左栏：内容在上、meta 贴底（模板的 h-full justify-between） */
+.case-text {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* 所有幻灯片叠在同一个格子里，容器自动取最高那张的高度，
+   切换时不会因为文案长短不同而跳高。 */
+.case-slides {
+  display: grid;
+}
+.case-slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.6s var(--ease),
+    transform 0.6s var(--ease);
+  pointer-events: none;
+}
+.case-slide.is-active {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.case-slide h3 {
+  font-size: clamp(1.3rem, 1.1rem + 0.9vw, 1.8rem);
+  letter-spacing: -0.03em;
+  margin: 0 0 0.6rem;
+}
+.case-slide p {
+  margin: 0;
+  max-width: 46ch;
+}
+
+/* meta：圆点 + 序号。模板这里是「2022 / Expansion」，
+   牙科服务没有时间轴，所以放服务序号 + 分类名，两个都是真的。 */
+.case-meta {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5rem;
+}
+@media (min-width: 768px) {
+  .case-meta {
+    flex-direction: column;
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+}
+.case-dots {
+  display: flex;
+  gap: 0.45rem;
+  padding: 0.4rem;
+  width: fit-content;
+  border-radius: var(--r-pill);
+  background: var(--sky-05);
+  box-shadow: 0 0 0 1px var(--ring);
+}
+.case-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: var(--sky-30);
+  cursor: pointer;
+  transition:
+    width 0.5s var(--ease),
+    background-color 0.5s var(--ease);
+}
+.case-dot.is-active {
+  width: 2rem;
+  background: var(--blue);
+}
+.case-index {
+  font-size: clamp(1.9rem, 1.5rem + 1.6vw, 2.9rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.case-label {
+  margin-top: 0.35rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--ink-faint);
+}
+
+/* 右栏图位。同样叠在一个格子里做交叉淡入。
+   min-height: 0 是必须的 —— grid item 默认 min-height: auto 会拿
+   <img> 的固有尺寸当下限，把 aspect-ratio 顶掉（踩过）。 */
+.case-arts {
+  display: grid;
+  min-height: 0;
+}
+.case-art {
+  grid-area: 1 / 1;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--r-core);
+  background:
+    radial-gradient(120% 90% at 24% 14%, #ffffff 0%, transparent 62%),
+    linear-gradient(
+      150deg,
+      var(--sky-05) 0%,
+      var(--sky-10) 55%,
+      var(--sky-20) 100%
+    );
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.case-art.is-active {
+  opacity: 1;
+}
+@media (min-width: 900px) {
+  .case-art {
+    aspect-ratio: 1 / 1;
+  }
+}
+.case-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.case-art:has(img)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 24, 38, 0.18), transparent 55%);
+  pointer-events: none;
+}
+.case-art:not(:has(img))::before {
+  content: attr(data-placeholder);
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+
+/* 没有 JS 时的兑底：三张全部竖排显示，圆点藏起来。
+   服务内容不能因为脚本挂了就消失。 */
+html:not(.js) .case-slides,
+html:not(.js) .case-arts {
+  display: grid;
+  gap: var(--gap);
+}
+html:not(.js) .case-slide,
+html:not(.js) .case-art {
+  grid-area: auto;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+html:not(.js) .case-dots {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-slide,
+  .case-art,
+  .case-dot {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   植牙爆炸图（.xv*）
+   原本是 implant.html 的内联 <style>（2026-09-09 搬过来）。
+   那个页已经并进 services.html 的「修复与矫正」节，
+   旧文件存在 archive/sunwag-implant-page-2026-09-09/。
+   行为在 implant.js（Sketchfab Viewer API）。
+   ============================================================ */
+/* ── Exploded-view module ─────────────────────────────────
+   Built on the site's own tokens (--sky-*, --ink-*, --ease). */
+.xv {
+  display: grid;
+  /* 旧值是 0.85fr 1fr，那时它是整页 hero、舞台该占主导。
+     现在左栏还多了 CTA / 授权行 / 免责声明，再压窄就变成
+     一条很高的文字柱配一个小模型。改成均分。 */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+  /* 旧值是 center。文字栏装下三个步骤盒 + CTA 后有 1099px 高，
+     而固定 4/5 的舞台只有 591px —— 居中之后上下各空 250px。
+     改成 stretch，舞台跟文字栏等高。 */
+  align-items: stretch;
+}
+@media (max-width: 880px) {
+  .xv {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* stage ------------------------------------------------- */
+.xv-stage {
+  position: relative;
+  border-radius: var(--r-lg);
+  background: radial-gradient(
+    120% 90% at 50% 8%,
+    var(--sky-00) 0%,
+    var(--sky-10) 62%,
+    var(--sky-20) 100%
+  );
+  box-shadow:
+    inset 0 0 0 1px var(--bezel),
+    inset 0 1px 0 var(--gloss),
+    var(--ambient-lg);
+  overflow: hidden;
+  /* 2026-09-09：拿掉了 max-height: 68vh / max-width: calc(68vh*0.8) /
+     justify-self: end 三条。它们是给旧那个整页 hero 写的 ——
+     用视口高度封顶、再把变窄的舞台贴向页边。并进卡片后
+     那个页边距问题不存在了，这三条只剩副作用：把舞台压小、
+     推到右边留出空档，模型也跟着变小。现在让它填满自己那一栏。 */
+  aspect-ratio: 4 / 5;
+  width: 100%;
+}
+/* 宽屏：不再用固定比例，跟旁边的文字栏等高。
+   min-height 是为了防止文案极短时舞台被压扁。 */
+@media (min-width: 881px) {
+  .xv-stage {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 26rem;
+  }
+}
+@media (max-width: 880px) {
+  .xv-stage {
+    /* 窄屏是单栏。旧值是 3/4 竖版 + max-width: calc(60vh*0.75) +
+       justify-self: center —— 那个宽度上限会把舞台卡在 297px，
+       在 714px 宽的窗口里右边直接空 172px（实测）。
+       改成方图填满整栏，高度上限保留 —— 没了它，
+       宽屏上一个竖版舞台会高到离谱。 */
+    aspect-ratio: 1 / 1;
+    max-height: 60vh;
+  }
+}
+.xv-stage iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  transition: opacity 0.7s var(--ease);
+}
+.xv-stage.is-live iframe {
+  opacity: 1;
+}
+
+/* poster / loading state -------------------------------- */
+.xv-poster {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 0.85rem;
+  justify-items: center;
+  text-align: center;
+  padding: 2rem;
+  transition: opacity 0.5s var(--ease);
+}
+.xv-stage.is-live .xv-poster {
+  opacity: 0;
+  pointer-events: none;
+}
+.xv-poster svg {
+  width: 52px;
+  height: 52px;
+  color: var(--blue);
+  opacity: 0.5;
+}
+.xv-poster p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+.xv-spin {
+  animation: xv-spin 1.4s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes xv-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* floating part labels with leader lines ----------------- */
+.xv-tags {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.xv-tag {
+  position: absolute;
+  right: clamp(0.75rem, 3%, 1.5rem);
+  transform: translate(10px, -50%);
+  opacity: 0;
+  transition:
+    opacity 0.45s var(--ease),
+    transform 0.45s var(--ease);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+.xv-tag.on {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+.xv-tag i {
+  display: block;
+  width: clamp(16px, 5vw, 40px);
+  height: 1px;
+  background: linear-gradient(
+    to left,
+    var(--blue) 0%,
+    rgba(27, 99, 191, 0) 100%
+  );
+}
+.xv-tag b {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-deep);
+  background: rgba(255, 255, 255, 0.82);
+  border-radius: var(--r-pill);
+  padding: 0.3rem 0.7rem;
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 6px 18px -10px rgba(14, 44, 84, 0.45);
+  white-space: nowrap;
+}
+
+/* copy side --------------------------------------------- */
+.xv-steps {
+  list-style: none;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+.xv-steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  /* 圆点和标题同一行，段落另起一行通栏（左边缘跟圆点对齐）。
+     行间距比列间距小，不然标题跟正文会裂开。 */
+  column-gap: 0.7rem;
+  row-gap: 0.35rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border-radius: var(--r-core);
+  box-shadow: inset 0 0 0 1px transparent;
+  transition:
+    background 0.45s var(--ease),
+    box-shadow 0.45s var(--ease),
+    transform 0.45s var(--ease);
+}
+.xv-steps li.on {
+  background: var(--sky-05);
+  box-shadow:
+    inset 0 0 0 1px var(--bezel),
+    inset 0 1px 0 var(--gloss);
+  transform: translateX(3px);
+}
+/* HTML 里 h4 和 p 包在一个 <div> 里（从 implant.html 搬来的结构）。
+   display: contents 把这层壳化掉，两者直接变成 li 的网格项，
+   不用改 HTML。 */
+.xv-steps li > div {
+  display: contents;
+}
+.xv-steps li p {
+  grid-column: 1 / -1;
+}
+
+.xv-steps .n {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--r-pill);
+  display: grid;
+  place-content: center;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--ink-faint);
+  background: var(--sky-10);
+  transition:
+    color 0.45s var(--ease),
+    background 0.45s var(--ease);
+}
+.xv-steps li.on .n {
+  color: #fff;
+  background: var(--blue);
+}
+/* 搬进 services.html 时标题从 h3 降级成了 h4（页面层级：
+   h1 页名 → h2 章节 → h3 服务 → h4 零件），但这条选择器忘了改。
+   结果是它一直没生效，h4 吃的是浏览器默认 margin: 1.33em 0 ——
+   那个大空隙就是这么来的。 */
+.xv-steps h4 {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.xv-steps p {
+  margin: 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+/* controls ---------------------------------------------- */
+.xv-credit {
+  margin-top: 1.1rem;
+  font-size: 0.7rem;
+  color: var(--ink-faint);
+}
+.xv-credit a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* 授权署名 + 免责声明：注解的是整个区块，不属于左栏。
+   放在两栏下方通栏，顺便把文字栏矮下来。 */
+/* 这张卡的引言跟下方的两栏对齐，不走 .lede 默认的 54ch。
+   代价：宽屏一行会长一些（996px 约 85 字符）。 */
+.xv-intro {
+  max-width: none;
+}
+
+.xv-foot {
+  margin-top: clamp(1.25rem, 3vw, 2rem);
+  padding-top: 1.1rem;
+  box-shadow: inset 0 1px 0 var(--sky-20);
+}
+/* 免责 + 授权合并后只剩一段，不再用 .tiny / .note / .xv-credit，
+   也就没了 .note 自带的那条内部分隔线（.xv-foot 自己已经有顶线）。 */
+.xv-note {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--ink-faint);
+}
+.xv-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ============================================================
+   Detail rows / FAQ / map
+   ============================================================ */
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.rows li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  padding: 1.15rem 0;
+  box-shadow: inset 0 1px 0 var(--sky-20);
+}
+.rows li:first-child {
+  padding-top: 0;
+  box-shadow: none;
+}
+.rows .k {
+  flex: 0 0 8rem;
+  font-weight: 650;
+  font-size: 0.9rem;
+  color: var(--ink-faint);
+}
+.rows .v {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+.rows a {
+  color: var(--blue-deep);
+  text-decoration: none;
+  box-shadow: inset 0 -1px 0 var(--sky-30);
+  transition: box-shadow 0.4s var(--ease);
+}
+.rows a:hover {
+  box-shadow: inset 0 -2px 0 var(--blue);
+}
+
+/* ---- Pill field with the button nested inside ----
+   Borrowed form: Paymark newsletter.tsx (58px pill, button inset at 2px).
+   Its version is a fake newsletter on a dark ground. This one is a real GET
+   form to wa.me?text= — no backend, no JS, the typed message arrives prefilled
+   in WhatsApp. Ground swapped to --sky-05 + bezel; the template's
+   rgba(255,255,255,.1) only reads on black. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.pill-field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 5px 5px 5px clamp(1rem, 2.2vw, 1.35rem);
+  border-radius: var(--r-pill);
+  background: linear-gradient(180deg, #fff, var(--sky-05));
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 0 0 6px var(--bezel);
+  transition: box-shadow 0.5s var(--ease);
+}
+.pill-field:focus-within {
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    0 0 0 6px var(--sky-20);
+}
+.pill-field input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-block: 0.5rem;
+  border: 0;
+  background: none;
+  outline: none;
+  font: inherit;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+.pill-field input::placeholder {
+  color: var(--ink-faint);
+}
+.pill-field .btn {
+  flex: none;
+  min-height: 46px;
+  padding-inline: 1.3rem;
+}
+.pill-note {
+  margin-top: 0.7rem;
+}
+
+/* ---- FAQ: sticky aside + accordion column ----
+   Borrowed structure: Paymark faq.tsx (two columns + per-item hairline).
+   Rewritten with the tokens already in this file — no new colours, no library. */
+.faq-layout {
+  display: grid;
+  align-items: start;
+  gap: clamp(1.5rem, 3.5vw, 3rem);
+}
+/* stacked: questions first, contact card after — the card must not push the
+   actual answers below the fold on a phone */
+.faq-aside {
+  order: 2;
+}
+@media (min-width: 62rem) {
+  .faq-layout {
+    grid-template-columns: minmax(0, 20.5rem) minmax(0, 1fr);
+  }
+  .faq-aside {
+    order: 0;
+    position: sticky;
+    top: clamp(5.5rem, 7vw, 7.25rem);
+  }
+}
+.faq-aside .card {
+  padding: clamp(1.35rem, 2.4vw, 1.75rem);
+}
+.faq-aside h2 {
+  font-size: 1.18rem;
+  margin-bottom: 0.55rem;
+}
+.faq-aside .rows {
+  margin-top: 1.15rem;
+}
+.faq-aside .btn {
+  width: 100%;
+  margin-top: 1.35rem;
+}
+
+/* hairline between items — same idiom as .rows li, not a 1px grey border */
+.faq-list details {
+  box-shadow: inset 0 1px 0 var(--sky-20);
+}
+.faq-list details:first-child {
+  box-shadow: none;
+}
+/* the column is wide enough to hurt reading — cap the measure, not the column,
+   so the hairline and the +/× marker still span the full width */
+.faq-list .answer p {
+  max-width: 60ch;
+}
+
+details {
+  padding: 1.25rem clamp(1.25rem, 2.4vw, 1.85rem);
+  margin-bottom: 0.9rem;
+}
+details summary {
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 1.05rem;
+  letter-spacing: -0.015em;
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary::after {
+  content: "";
+  margin-left: auto;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  background-color: var(--sky-10);
+  background-image:
+    linear-gradient(var(--blue-deep), var(--blue-deep)),
+    linear-gradient(var(--blue-deep), var(--blue-deep));
+  background-size:
+    11px 1.5px,
+    1.5px 11px;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.5s var(--ease);
+}
+details[open] summary::after {
+  transform: rotate(135deg);
+}
+details .answer {
+  padding-top: 0.9rem;
+  color: var(--ink-soft);
+}
+details .answer p:last-child {
+  margin-bottom: 0;
+}
+
+.map {
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  line-height: 0;
+  background: var(--sky-10);
+  box-shadow:
+    0 0 0 1px var(--ring),
+    0 0 0 9px var(--bezel),
+    var(--ambient-lg);
+}
+.map iframe {
+  width: 100%;
+  height: clamp(280px, 44vw, 460px);
+  border: 0;
+  display: block;
+}
+
+/* ============================================================
+   Fixed action dock (mobile) — blur allowed, it is fixed
+   ============================================================ */
+.dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  padding: 0.7rem var(--pad) calc(0.7rem + env(safe-area-inset-bottom));
+  background: rgba(247, 250, 254, 0.78);
+  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: blur(22px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 -1px 0 var(--ring);
+}
+.dock .btn {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  display: flex;
+}
+@media (min-width: 940px) {
+  .dock {
+    display: none;
+  }
+}
+@media (max-width: 939px) {
+  body {
+    padding-bottom: 92px;
+  }
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+footer {
+  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 4.5rem);
+  margin-top: clamp(2rem, 5vw, 4rem);
+  box-shadow: inset 0 1px 0 var(--sky-20);
+}
+footer .cols {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr));
+}
+footer a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.4s var(--ease);
+}
+footer a:hover {
+  color: var(--blue-deep);
+}
+footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+footer li {
+  margin-bottom: 0.45rem;
+}
+.note {
+  margin-top: 2.25rem;
+  padding-top: 1.35rem;
+  box-shadow: inset 0 1px 0 var(--sky-20);
+}
+
+/* ============================================================
+   Scroll choreography — transform / opacity / filter only
+   ============================================================ */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(58px);
+  filter: blur(10px);
+  transition:
+    opacity 0.85s var(--ease),
+    transform 0.85s var(--ease),
+    filter 0.85s var(--ease);
+  transition-delay: var(--d, 0ms);
+}
+html.js [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+a:focus-visible,
+summary:focus-visible,
+.btn:focus-visible {
+  outline: 2.5px solid var(--blue);
+  outline-offset: 4px;
+  border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  html.js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* ---- 背景着色器画布 -------------------------------------
+   index.html 用 Scanner（scanner.js），services.html 用 Aurora（aurora.js）。
+   两个都放在 .wash 里，所以自动继承 fixed / inset:0 / z-index:-1 /
+   pointer-events:none。Scanner 的指针交互因此监听 window 而不是 canvas。
+   没有 WebGL2 时这两个 canvas 就是透明的空画布，下面的光斑照旧。
+   （Aurora 的 lightMode 输出不透明，会盖住光斑；Scanner 是叠在光斑上。） */
+.wash canvas.scanner,
+.wash canvas.aurora {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* ============================================================
+   图片手风琴（.acc）— React Bits <AccordionGallery> 的原生版
+
+   宽度靠 flex-basis 过渡。用 flex-basis 而不是 width，是因为
+   容器有 gap：width:52% 会连 gap 一起算进去，四张加起来超过
+   100% 就换行了。basis 里先把 gap 从 100% 里扣掉再乘比例。
+
+   --ratio 由 accordion.js 逐张写。这里给的默认值 calc(1/var(--n))
+   是没有 JS 时的兜底 —— 等宽平铺，图还在，链接也还在。
+   ============================================================ */
+.acc {
+  --n: 4;
+  --acc-gap: clamp(0.4rem, 1vw, 0.7rem);
+  display: flex;
+  gap: var(--acc-gap);
+  height: clamp(270px, 38vw, 440px);
+}
+.acc-item {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: var(--r-core);
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: calc(
+    (100% - (var(--n) - 1) * var(--acc-gap)) * var(--ratio, calc(1 / var(--n)))
+  );
+  transition: flex-basis 0.62s var(--ease);
+  box-shadow:
+    inset 0 1px 0 var(--gloss),
+    0 0 0 1px var(--ring),
+    var(--ambient);
+}
+.acc-item:hover {
+  /* 卡片默认有 translateY 的悬停效果，这里不要 —— 展开本身就是反馈 */
+  transform: none;
+}
+.acc-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.06);
+  filter: saturate(0.82) brightness(0.94);
+  transition:
+    transform 0.62s var(--ease),
+    filter 0.62s var(--ease);
+}
+.acc-item.is-open img {
+  transform: scale(1);
+  filter: none;
+}
+/* 压在图上的渐变，保证白字任何一张图上都读得清 */
+.acc-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 24, 38, 0.62) 0%,
+    rgba(10, 24, 38, 0.16) 40%,
+    transparent 66%
+  );
+  pointer-events: none;
+}
+
+/* 标签两份：收拢时竖排，展开时横排，交叉淡换。
+   竖排是为了窄到 80px 也不会把字挤掉。 */
+.acc-v,
+.acc-h {
+  position: absolute;
+  z-index: 1;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-shadow: 0 1px 12px rgba(10, 24, 38, 0.5);
+  transition: opacity 0.42s var(--ease);
+}
+.acc-v {
+  left: 0;
+  bottom: 0;
+  padding: 1rem 0.95rem;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.92rem;
+  opacity: 1;
+}
+.acc-h {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.15rem 1.3rem;
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.acc-h::after {
+  content: "→";
+  font-weight: 500;
+  opacity: 0.85;
+}
+/* 中文不能跟着转 180°。vertical-rl 下拉丁字母会被顺时针躺倒，
+   再转 180° 才变成习惯的“从下往上读”；而 CJK 在 vertical-rl 下本来就是
+   正的、从上往下读，再转一次就整个倒过来了。 */
+:root[data-lang="zh"] .acc-v {
+  transform: none;
+  /* 中英文的首字在两端：英文转了 180°、从下往上读，首字母天然
+     就贴在盒子底部，而盒子是 bottom 对齐的 —— 所以英文本来就齐。
+     中文从上往下读，首字在盒子顶部，盒子又因字数不同而高低不一。
+     所以中文这边改成固定高度的盒子 + 文字靠顶，首字就落在同一水平线。
+     vertical-rl 下行内轴是竖的，所以 height 管的是文字方向的长度、
+     text-align 管的是上下对齐。7rem 能装下 5 个字，目前最长的是 4 个。 */
+  height: 7rem;
+  text-align: start;
+}
+
+.acc-item.is-open .acc-v {
+  opacity: 0;
+}
+.acc-item.is-open .acc-h {
+  opacity: 1;
+  transition-delay: 0.16s; /* 等宽度先走一段，字才淡进来 */
+}
+
+.acc-item:focus-visible {
+  outline: 3px solid var(--blue-lift);
+  outline-offset: 3px;
+}
+
+/* 窄屏不做手风琴：手机没有 hover，硬套就变成必须点两下才进得去。
+   换成两列网格，标签全部横排常驻。 */
+@media (max-width: 760px) {
+  .acc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: auto;
+  }
+  .acc-item {
+    flex-basis: auto;
+    aspect-ratio: 4 / 5;
+    min-height: 0;
+  }
+  .acc-item img {
+    transform: none;
+    filter: none;
+  }
+  .acc-v {
+    display: none;
+  }
+  .acc-h {
+    opacity: 1;
+    font-size: 0.95rem;
+    padding: 0.9rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acc-item,
+  .acc-item img,
+  .acc-v,
+  .acc-h {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   诊所简介的三张数字卡（首页，What we do 之前）
+   参考 T Dental 的 stat 卡：深蓝渐变 + 大数字 + 一行说明。
+   ============================================================ */
+/* 标题区跟下面三张卡同宽。.section-head（58ch）和 .lede（54ch）
+   都各自卡了宽度，两个都要放开，只放一个没用 */
+.trust-head,
+.trust-head .lede {
+  max-width: none;
+}
+.trust-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--gap);
+}
+.trust-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  padding: clamp(1.4rem, 2.6vw, 2.2rem);
+  border-radius: var(--r-lg);
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(180deg, var(--blue-deep) 0%, var(--blue) 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    var(--ambient);
+}
+.trust-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Counter 的 fontSize={80}：桌面就是 80px，窄了跟着缩，
+     不然三栏平板宽度下「2017」会撑破卡片 */
+  font-size: clamp(2.6rem, 5.4vw, 80px);
+  font-weight: 900; /* Plus Jakarta Sans 最粗只有 800，浏览器会用 800 */
+  line-height: 1;
+}
+.trust-unit {
+  margin-left: 0.08em;
+  font-size: 0.42em;
+  font-weight: 700;
+}
+
+/* 滚轮数字 —— React Bits <Counter> 的 CSS 部分
+   padding={5} gap={0} textColor="white" */
+.counter {
+  --counter-pad: 5px;
+  /* 负值 = 比 gap 0 更密。每一位的列宽是字符的 advance（1ch），
+     比字形墨迹宽出两侧留白，负间距就是吃掉这段留白。
+     -0.05em 在 80px 下约 -4px，「00」之间还留 2px 左右，不会粘在一起 */
+  --counter-gap: -0.05em;
+  --counter-h: calc(1em + var(--counter-pad));
+  display: inline-flex;
+  padding-inline: 8px; /* 原版 horizontalPadding 默认 8 */
+  overflow: hidden;
+  color: #fff;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  /* 原版上下各压一条 16px 的黑色渐变让数字淡出；在蓝底上黑条会很突兀，
+     改用遮罩做同样的淡出，底色是什么都不露馅 */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 16px,
+    #000 calc(100% - 16px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    #000 16px,
+    #000 calc(100% - 16px),
+    transparent 100%
+  );
+}
+.counter-digit {
+  position: relative;
+  width: 1ch;
+  height: var(--counter-h);
+}
+/* flex 的 gap 不接受负值，所以用 margin 来做间距 */
+.counter-digit + .counter-digit {
+  margin-left: var(--counter-gap);
+}
+.counter-number {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trust-label {
+  margin-top: 0.75rem;
+  font-weight: 600;
+  opacity: 0.92;
+}
+/* 占位状态：数字半透明 + 虚线标签。上线前必须清掉（见 index.html 注释） */
+
+.pending-tag {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.9rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--r-pill);
+  border: 1px dashed rgba(255, 255, 255, 0.7);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+@media (max-width: 760px) {
+  .trust-cards {
+    grid-template-columns: 1fr;
+  }
+  .trust-card {
+    min-height: 150px;
+  }
+}
+
+/* ============================================================
+   服务页：一项一行，图文左右交替（方案 B，2026-09-14）
+   参考 T Dental 的服务页节奏，但不套卡片 —— 背景已经是极光，
+   每行再包一层玻璃卡会太重。.is-flip 让图换到左边。
+   窄屏一律单栏、图在上（植牙那行例外：3D 舞台在文字下面，
+   不然一进页面先看到一个还在加载的空框）。
+   ============================================================ */
+.svc-rows {
+  display: grid;
+  gap: clamp(3.5rem, 8vw, 6.5rem);
+}
+.svc-row,
+.svc-mini > .card {
+  scroll-margin-top: clamp(7rem, 9vw, 9rem);
+}
+.svc-row {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+@media (min-width: 881px) {
+  .svc-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .svc-row.is-flip .svc-media {
+    order: -1;
+  }
+  .svc-row--xv {
+    align-items: stretch;
+  }
+}
+.svc-row .xv-foot {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+.svc-text h3 {
+  margin: 0.5rem 0 0.8rem;
+  font-size: clamp(1.6rem, 1.25rem + 1.5vw, 2.5rem);
+  letter-spacing: -0.03em;
+}
+.svc-text > p {
+  max-width: 52ch;
+  margin: 0;
+  font-size: clamp(1rem, 0.96rem + 0.3vw, 1.12rem);
+}
+/* 照片外框交给 BorderGlow（下一节）。figure 只管比例和 reveal ——
+   reveal.js 会写 transform，而 BorderGlow 卡自己也要 transform，
+   两个不能放在同一个元素上。overflow 必须 visible，外发光要溢出 40px。 */
+.svc-media {
+  margin: 0;
+  aspect-ratio: 5 / 4;
+}
+.svc-media > .border-glow-card {
+  height: 100%;
+}
+.svc-media .border-glow-inner {
+  height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--border-radius) - 1px);
+}
+/* 原版的内容层（z 1）排在光晕（z 1）后面，会把光晕的内圈整个盖掉 ——
+   原版内容是透明卡片无所谓，这里内容是一整张照片，只剩外圈那点光，
+   浅色背景上几乎看不见。把光晕提到照片上面。 */
+.svc-media .border-glow-card > .edge-light {
+  z-index: 2;
+}
+.svc-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ============================================================
+   BorderGlow —— React Bits 原版 CSS，照搬（行为见 borderglow.js）
+   ============================================================ */
+.border-glow-card {
+  --edge-proximity: 0;
+  --cursor-angle: 45deg;
+  --edge-sensitivity: 30;
+  --color-sensitivity: calc(var(--edge-sensitivity) + 20);
+  --border-radius: 28px;
+  --glow-padding: 40px;
+  --cone-spread: 25;
+
+  position: relative;
+  border-radius: var(--border-radius);
+  isolation: isolate;
+  transform: translate3d(0, 0, 0.01px);
+  display: grid;
+  border: 1px solid rgb(255 255 255 / 15%);
+  background: var(--card-bg, #120f17);
+  overflow: visible;
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0px 1px 2px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px,
+    rgba(0, 0, 0, 0.1) 0px 4px 8px,
+    rgba(0, 0, 0, 0.1) 0px 8px 16px,
+    rgba(0, 0, 0, 0.1) 0px 16px 32px,
+    rgba(0, 0, 0, 0.1) 0px 32px 64px;
+}
+.border-glow-card--light {
+  border-color: rgb(24 24 27 / 12%);
+  box-shadow:
+    rgb(24 24 27 / 4%) 0 1px 2px,
+    rgb(24 24 27 / 5%) 0 8px 24px;
+}
+.border-glow-card--light::after,
+.border-glow-card--light > .edge-light {
+  mix-blend-mode: normal;
+}
+.border-glow-card::before,
+.border-glow-card::after,
+.border-glow-card > .edge-light {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transition: opacity 0.25s ease-out;
+  z-index: -1;
+}
+.border-glow-card:not(:hover):not(.sweep-active)::before,
+.border-glow-card:not(:hover):not(.sweep-active)::after,
+.border-glow-card:not(:hover):not(.sweep-active) > .edge-light {
+  opacity: 0;
+  transition: opacity 0.75s ease-in-out;
+}
+.border-glow-card::before {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--card-bg, #120f17) 0 100%) padding-box,
+    linear-gradient(rgb(255 255 255 / 0%) 0% 100%) border-box,
+    var(--gradient-one) border-box,
+    var(--gradient-two) border-box,
+    var(--gradient-three) border-box,
+    var(--gradient-four) border-box,
+    var(--gradient-five) border-box,
+    var(--gradient-six) border-box,
+    var(--gradient-seven) border-box,
+    var(--gradient-base) border-box;
+  opacity: calc(
+    (var(--edge-proximity) - var(--color-sensitivity)) /
+      (100 - var(--color-sensitivity))
+  );
+  mask-image: conic-gradient(
+    from var(--cursor-angle) at center,
+    black calc(var(--cone-spread) * 1%),
+    transparent calc((var(--cone-spread) + 15) * 1%),
+    transparent calc((100 - var(--cone-spread) - 15) * 1%),
+    black calc((100 - var(--cone-spread)) * 1%)
+  );
+}
+.border-glow-card::after {
+  border: 1px solid transparent;
+  background:
+    var(--gradient-one) padding-box,
+    var(--gradient-two) padding-box,
+    var(--gradient-three) padding-box,
+    var(--gradient-four) padding-box,
+    var(--gradient-five) padding-box,
+    var(--gradient-six) padding-box,
+    var(--gradient-seven) padding-box,
+    var(--gradient-base) padding-box;
+  mask-image:
+    linear-gradient(to bottom, black, black),
+    radial-gradient(ellipse at 50% 50%, black 40%, transparent 65%),
+    radial-gradient(ellipse at 66% 66%, black 5%, transparent 40%),
+    radial-gradient(ellipse at 33% 33%, black 5%, transparent 40%),
+    radial-gradient(ellipse at 66% 33%, black 5%, transparent 40%),
+    radial-gradient(ellipse at 33% 66%, black 5%, transparent 40%),
+    conic-gradient(
+      from var(--cursor-angle) at center,
+      transparent 5%,
+      black 15%,
+      black 85%,
+      transparent 95%
+    );
+  mask-composite: subtract, add, add, add, add, add;
+  opacity: calc(
+    var(--fill-opacity, 0.5) *
+      (var(--edge-proximity) - var(--color-sensitivity)) /
+      (100 - var(--color-sensitivity))
+  );
+  mix-blend-mode: soft-light;
+}
+.border-glow-card > .edge-light {
+  inset: calc(var(--glow-padding) * -1);
+  pointer-events: none;
+  z-index: 1;
+  mask-image: conic-gradient(
+    from var(--cursor-angle) at center,
+    black 2.5%,
+    transparent 10%,
+    transparent 90%,
+    black 97.5%
+  );
+  opacity: calc(
+    (var(--edge-proximity) - var(--edge-sensitivity)) /
+      (100 - var(--edge-sensitivity))
+  );
+  mix-blend-mode: plus-lighter;
+}
+.border-glow-card > .edge-light::before {
+  content: "";
+  position: absolute;
+  inset: var(--glow-padding);
+  border-radius: inherit;
+  box-shadow:
+    inset 0 0 0 1px var(--glow-color),
+    inset 0 0 1px 0 var(--glow-color-60),
+    inset 0 0 3px 0 var(--glow-color-50),
+    inset 0 0 6px 0 var(--glow-color-40),
+    inset 0 0 15px 0 var(--glow-color-30),
+    inset 0 0 25px 2px var(--glow-color-20),
+    inset 0 0 50px 2px var(--glow-color-10),
+    0 0 1px 0 var(--glow-color-60),
+    0 0 3px 0 var(--glow-color-50),
+    0 0 6px 0 var(--glow-color-40),
+    0 0 15px 0 var(--glow-color-30),
+    0 0 25px 2px var(--glow-color-20),
+    0 0 50px 2px var(--glow-color-10);
+}
+.border-glow-inner {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: auto;
+  z-index: 1;
+}
+@media (max-width: 880px) {
+  .svc-row:not(.svc-row--xv) .svc-media {
+    order: -1;
+  }
+}
+
+/* ============================================================
+   服务详情页 service-*.html（2026-09-14）
+   结构参考 T Dental 的单项服务页：首屏 → 重点 → 流程 → FAQ → 地图 → 其他服务。
+   没搬的：病人见证、「2000+ happy patients」、品牌 logo ——
+   牙医广告规范不允许见证式宣传，数字和品牌也都没有来源。
+   能复用的全用现成的：.hero-card / .shot / .rows / .grid + .card-num /
+   .faq-layout / .map。下面只补新增的几块。
+   ============================================================ */
+.crumb {
+  display: table; /* 独占一行，不跟后面的 eyebrow 挤在同一行 */
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color 0.4s var(--ease);
+}
+.crumb:hover {
+  color: var(--blue-deep);
+}
+.svc-hero .shot {
+  aspect-ratio: 1 / 1;
+}
+
+.svc-detail {
+  display: grid;
+  gap: var(--gap);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .svc-detail {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  }
+}
+.svc-detail h2,
+.svc-visit h2 {
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem);
+  margin-bottom: 1.25rem;
+}
+.svc-detail .card:hover {
+  transform: none; /* 信息卡不是可点的东西，不要悬停上浮 */
+}
+.svc-glance .rows .k {
+  flex-basis: 7.5rem;
+}
+.svc-glance .tiny {
+  margin: 1.1rem 0 0;
+}
+.svc-bullets {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: var(--ink-soft);
+}
+.svc-bullets li {
+  position: relative;
+  padding: 0 0 0.95rem 1.6rem;
+}
+.svc-bullets li:last-child {
+  padding-bottom: 0;
+}
+.svc-bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.62em;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 0 4px var(--sky-10);
+}
+
+#faq {
+  scroll-margin-top: clamp(5.5rem, 7vw, 7.25rem);
+}
+
+.svc-visit {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .svc-visit {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  }
+}
+
+.svc-others {
+  display: grid;
+  gap: var(--gap);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+}
+.svc-other {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.7rem 1rem 0.7rem 0.7rem;
+  color: var(--ink);
+  font-weight: 650;
+  text-decoration: none;
+}
+.svc-other img {
+  width: 52px;
+  height: 52px;
+  flex: none;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* 服务列表页每一行：「了解详情」+「WhatsApp 询问」两个链接并排 */
+.svc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.6rem;
+}
